@@ -156,45 +156,74 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .pcls{background:none;border:1px solid rgba(0,207,255,.16);color:rgba(0,207,255,.55);width:25px;height:25px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:10px;transition:all .18s;flex-shrink:0}
 .pcls:hover{background:rgba(0,207,255,.1);color:#fff}
 
-.pb{padding:15px 20px 22px;display:flex;flex-direction:column;gap:13px}
-.sec{font-size:6.5px;letter-spacing:4px;color:rgba(0,207,255,.35);margin-bottom:7px;display:flex;align-items:center;gap:6px;text-transform:uppercase}
-.sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,207,255,.18),transparent)}
-.desc{color:rgba(180,212,238,.7);font-size:10.5px;line-height:1.95;letter-spacing:.25px}
-.desc strong{color:var(--pc,var(--c1))}
+.pb{padding:15px 20px 22px;display:flex;flex-direction:column;gap:14px}
+.sec{font-size:7px;letter-spacing:4px;color:rgba(0,207,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:6px;text-transform:uppercase;font-weight:600}
+.sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,207,255,.28),transparent)}
+.desc{color:rgba(210,232,250,.82);font-size:11px;line-height:2;letter-spacing:.2px}
+.desc strong{color:var(--pc,var(--c1));font-weight:700}
 
 .tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-size:7px;letter-spacing:1.8px;padding:3px 10px;border:1px solid rgba(0,207,255,.2);color:rgba(0,207,255,.6);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);text-transform:uppercase;background:rgba(0,207,255,.03)}
+.tag{font-size:7.5px;letter-spacing:1.8px;padding:4px 12px;border:1px solid rgba(0,207,255,.28);color:rgba(0,207,255,.78);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);text-transform:uppercase;background:rgba(0,207,255,.05)}
 
+/* ── TIMELINE ── */
 .tl2{display:flex;flex-direction:column}
-.ti{display:grid;grid-template-columns:68px 1fr;gap:0 11px;position:relative;padding-bottom:13px}
+.ti{display:grid;grid-template-columns:72px 1fr;gap:0 12px;position:relative;padding-bottom:16px}
 .ti:last-child{padding-bottom:0}
-.ti:not(:last-child)::after{content:'';position:absolute;left:66px;top:16px;bottom:0;width:1px;background:linear-gradient(180deg,var(--pc,rgba(0,207,255,.28)),transparent)}
-.ti-d{font-size:7px;letter-spacing:1.5px;color:rgba(0,207,255,.5);padding-top:2px;text-align:right;line-height:1.6}
-.ti-dot{position:absolute;left:61px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--pc,rgba(0,207,255,.6));box-shadow:0 0 7px var(--pc,rgba(0,207,255,.6));z-index:1}
-.ti-t{font-size:9px;letter-spacing:1.5px;color:#fff;font-weight:600;line-height:1.4}
-.ti-o{font-size:8px;color:rgba(130,180,215,.52);letter-spacing:1px;margin-top:2px}
-.ti-c{font-size:8px;color:rgba(150,185,210,.38);margin-top:3px;line-height:1.65;font-style:italic}
+.ti:not(:last-child)::after{content:'';position:absolute;left:70px;top:16px;bottom:0;width:1px;background:linear-gradient(180deg,var(--pc,rgba(0,207,255,.4)),transparent)}
+/* date label */
+.ti-d{
+  font-size:7px;letter-spacing:1.5px;
+  color:var(--pc,rgba(0,207,255,.75));
+  padding-top:3px;
+  padding-right:14px; /* Ligne ajoutée pour éviter le chevauchement */
+  text-align:right;line-height:1.7;
+  font-weight:600;opacity:.9
+}
+/* connector dot */
+.ti-dot{position:absolute;left:65px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--pc,rgba(0,207,255,.7));box-shadow:0 0 8px var(--pc,rgba(0,207,255,.7)),0 0 16px var(--pc,rgba(0,207,255,.3));z-index:1}
+/* title */
+.ti-t{
+  font-size:11px;letter-spacing:1px;
+  color:#fff;font-weight:700;line-height:1.4;
+  text-shadow:0 0 12px rgba(255,255,255,.12)
+}
+/* organization */
+.ti-o{
+  font-size:8.5px;color:rgba(170,210,240,.65);
+  letter-spacing:1px;margin-top:3px;font-style:normal
+}
+/* description — was .38 opacity, now fully readable */
+.ti-c{
+  font-size:10px;
+  color:rgba(200,225,245,.82);
+  margin-top:6px;line-height:1.85;
+  letter-spacing:.2px;
+  border-left:2px solid var(--pc,rgba(0,207,255,.3));
+  padding-left:10px;
+  background:rgba(0,207,255,.025);
+  padding-top:6px;padding-bottom:6px;padding-right:8px
+}
 
-.mets{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(0,207,255,.02);border:1px solid rgba(0,207,255,.07)}
-.met{padding:10px 6px;text-align:center;border-right:1px solid rgba(0,207,255,.06)}
+.mets{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(0,207,255,.025);border:1px solid rgba(0,207,255,.1)}
+.met{padding:12px 6px;text-align:center;border-right:1px solid rgba(0,207,255,.08)}
 .met:last-child{border:none}
-.mv{font-family:var(--fd);font-size:16px;font-weight:800;display:block;line-height:1.1;color:var(--pc,#fff);text-shadow:0 0 12px var(--pc,transparent)}
-.ml{font-size:6.5px;letter-spacing:2px;color:rgba(0,207,255,.35);display:block;margin-top:3px}
+.mv{font-family:var(--fd);font-size:17px;font-weight:800;display:block;line-height:1.1;color:var(--pc,#fff);text-shadow:0 0 14px var(--pc,transparent)}
+.ml{font-size:7px;letter-spacing:2px;color:rgba(160,205,235,.55);display:block;margin-top:4px}
 
-.skbars{display:flex;flex-direction:column;gap:9px}
-.skb{display:grid;grid-template-columns:1fr 32px;gap:0 8px;align-items:center}
-.skb-l{font-size:7.5px;letter-spacing:1.5px;color:rgba(175,210,235,.55);margin-bottom:3px;grid-column:1/-1}
-.skb-t{height:2px;background:rgba(0,207,255,.07);border-radius:1px;overflow:hidden}
-.skb-f{height:100%;border-radius:1px;animation:sbf .85s cubic-bezier(.22,1,.36,1) both}
+.skbars{display:flex;flex-direction:column;gap:10px}
+.skb{display:grid;grid-template-columns:1fr 36px;gap:0 8px;align-items:center}
+.skb-l{font-size:9px;letter-spacing:1px;color:rgba(200,225,245,.78);margin-bottom:4px;grid-column:1/-1}
+.skb-t{height:3px;background:rgba(0,207,255,.09);border-radius:2px;overflow:hidden}
+.skb-f{height:100%;border-radius:2px;animation:sbf .85s cubic-bezier(.22,1,.36,1) both}
 @keyframes sbf{from{width:0%}}
-.skb-p{font-size:7px;color:rgba(0,207,255,.35);text-align:right;grid-row:2}
+.skb-p{font-size:8px;color:rgba(0,207,255,.55);text-align:right;grid-row:2;font-weight:600}
 
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.card{border:1px solid rgba(0,207,255,.1);padding:10px 12px;background:rgba(0,0,0,.3);transition:border-color .22s,background .22s}
-.card:hover{border-color:rgba(0,207,255,.28);background:rgba(0,207,255,.04)}
-.card-i{font-size:14px;margin-bottom:5px}
-.card-t{font-size:7.5px;letter-spacing:2px;color:var(--pc,rgba(0,207,255,.75));margin-bottom:3px;font-weight:600}
-.card-d{font-size:8px;color:rgba(148,192,218,.48);line-height:1.65}
+.card{border:1px solid rgba(0,207,255,.12);padding:11px 12px;background:rgba(0,0,0,.32);transition:border-color .22s,background .22s}
+.card:hover{border-color:rgba(0,207,255,.32);background:rgba(0,207,255,.05)}
+.card-i{font-size:15px;margin-bottom:5px}
+.card-t{font-size:8px;letter-spacing:2px;color:var(--pc,rgba(0,207,255,.85));margin-bottom:4px;font-weight:700}
+.card-d{font-size:9px;color:rgba(185,215,235,.65);line-height:1.7}
 
 .cta{display:flex;gap:6px}
 .btn{flex:1;padding:9px;font-family:var(--fu);font-size:7px;letter-spacing:3px;text-transform:uppercase;cursor:none;transition:all .2s;border:1px solid;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
@@ -236,10 +265,10 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 
   <div class="tl TL"><span id="sdot" style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#00ff88;box-shadow:0 0 6px #00ff88;animation:dotpls 1.4s ease-in-out infinite;vertical-align:middle;margin-right:4px"></span>STATUT: NOMINAL<br>ORBITES: SYNCHRONISÉES<br>FORMATION: BTS SIO SLAM</div>
   <div class="tl TR" id="ttr">CURSEUR: ——<br>SCAN: ACTIF<br>RENDERER: WEBGL2</div>
-  <div class="tl BL">LIAN PITER SILVENTE · 19 ANS<br>LE TOUVET 38 · AUVERGNE RA<br>DISPO: SEPT. 2025</div>
+  <div class="tl BL">LIAN PITER SILVENTE · 19 ANS<br>LE TOUVET 38 · AUVERGNE RA<br>ALTERNANCE: ERMA CONCEPT</div>
   <div class="tl BR">CLIC: EXPLORER PLANÈTE<br>NAV: BARRE EN BAS<br>ESC: RETOUR</div>
 
-  <div id="banner"><div class="ban-name">Lian Piter Silvente</div><div class="ban-sub">BTS SIO SLAM · ALTERNANCE SEPT. 2025 · AUVERGNE RHÔNE-ALPES</div></div>
+  <div id="banner"><div class="ban-name">Lian Piter Silvente</div><div class="ban-sub">BTS SIO SLAM · EN ALTERNANCE CHEZ ERMA CONCEPT · AUVERGNE RHÔNE-ALPES</div></div>
 
   <div id="nav">
     <div class="nav-lbl">NAVIGUER VERS UN MONDE</div>
@@ -278,7 +307,7 @@ const PL = [
     color:0x29b6f6, hex:'#29b6f6', em:0x0a2f44,
     size:.82, r:7, sp:.27, a:0, rot:.009, type:'ocean',
     html:d=>`
-      <p class="desc">Passionné par l'informatique depuis toujours, je suis en <strong>BTS SIO option SLAM</strong> au Campus Nexa Digital School de Lyon. Je recherche une <strong>alternance pour septembre 2025</strong> en Auvergne Rhône-Alpes, puis viser un <strong>Bachelor Data &amp; BI</strong>. L'IA me fascine — comprendre comment un programme raisonne est ce qui me motive.</p>
+      <p class="desc">Passionné par l'informatique depuis toujours, je suis en <strong>BTS SIO option SLAM</strong> au Campus Nexa Digital School de Lyon. Actuellement en alternance au sein de l'entreprise <strong>ERMA CONCEPT</strong> à Grésy-sur-Aix, je souhaite ensuite viser un <strong>Bachelor Data &amp; BI</strong>. L'IA me fascine — comprendre son fonctionnement et explorer ses diverses possibilités d'application me motivent à poursuivre dans cette voie.</p>
       <div><div class="sec">CONTACT</div>
       <div class="tags">
         <span class="tag">📍 Le Touvet, 38660</span>
@@ -341,21 +370,70 @@ const PL = [
       </div>`
   },
   {
-    id:'exps', name:'EXPÉRIENCES', sub:'Alternance & Stages · 2021 → 2024',
+    id:'exps', name:'EXPÉRIENCES', sub:'Alternance & Stages · 2021 → Aujourd\'hui',
     color:0xef9a9a, hex:'#ef9a9a', em:0x5a0000,
     size:.92, r:18.5, sp:.11, a:Math.PI*1.5, rot:.006, type:'rocky',
     html:d=>`
       <div><div class="sec">EXPÉRIENCES PROFESSIONNELLES</div>
       <div class="tl2" style="--pc:${d.hex}">
-        <div class="ti"><div class="ti-d">2023→2024</div><div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div><div><div class="ti-t">Technicien Informatique — Alternance</div><div class="ti-o">Microtech Maintenance et Réseau</div><div class="ti-c">Diagnostique, réparation PC, maintenance équipements réseau.</div></div></div>
-        <div class="ti"><div class="ti-d">2023 · 2 mois</div><div class="ti-dot" style="background:#ff8a65;box-shadow:0 0 8px #ff8a65"></div><div><div class="ti-t">Stage — Maintenance Informatique</div><div class="ti-o">Gresi Info</div><div class="ti-c">Maintenance et dépannage informatique.</div></div></div>
-        <div class="ti"><div class="ti-d">2022 · 1 mois</div><div class="ti-dot" style="background:#ffb74d;box-shadow:0 0 8px #ffb74d"></div><div><div class="ti-t">Stage — Maintenance Informatique</div><div class="ti-o">IPC Informatique</div><div class="ti-c">Maintenance et dépannage, découverte du milieu professionnel.</div></div></div>
-        <div class="ti"><div class="ti-d">2021</div><div class="ti-dot" style="background:#aed581;box-shadow:0 0 8px #aed581"></div><div><div class="ti-t">Stage — Rédaction Radiophonique</div><div class="ti-o">Radio Grésivaudan</div><div class="ti-c">Écriture et mise en voix de contenus radio.</div></div></div>
+
+        <div class="ti">
+          <div class="ti-d">2025<br>↓<br>En cours</div>
+          <div class="ti-dot" style="background:#ff8c42;box-shadow:0 0 10px #ff8c42,0 0 20px #ff8c4260"></div>
+          <div>
+            <div class="ti-t" style="color:#ff8c42">Technicien Informatique — Alternance ★</div>
+            <div class="ti-o">ERMA CONCEPT · Grésy-sur-Aix, Savoie</div>
+            <div class="ti-c" style="border-left-color:#ff8c42;background:rgba(255,140,66,.06)">
+              Gestion du parc informatique (inventaire, maintenance, diagnostic). Mise en place de postes Windows (déploiement, AD, logiciels métier). Administration Microsoft 365 : comptes, Exchange Online, Teams, SharePoint.
+            </div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">2023→2024</div>
+          <div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div>
+          <div>
+            <div class="ti-t">Technicien Informatique — Alternance</div>
+            <div class="ti-o">Microtech Maintenance et Réseau</div>
+            <div class="ti-c">Diagnostique et réparation de PC, maintenance d'équipements réseau. Première expérience professionnelle en alternance.</div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">2023<br>2 mois</div>
+          <div class="ti-dot" style="background:#ff8a65;box-shadow:0 0 8px #ff8a65"></div>
+          <div>
+            <div class="ti-t">Stage — Maintenance Informatique</div>
+            <div class="ti-o">Gresi Info</div>
+            <div class="ti-c">Maintenance et dépannage informatique en entreprise.</div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">2022<br>1 mois</div>
+          <div class="ti-dot" style="background:#ffb74d;box-shadow:0 0 8px #ffb74d"></div>
+          <div>
+            <div class="ti-t">Stage — Maintenance Informatique</div>
+            <div class="ti-o">IPC Informatique</div>
+            <div class="ti-c">Maintenance et dépannage, découverte du milieu professionnel.</div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">2021</div>
+          <div class="ti-dot" style="background:#aed581;box-shadow:0 0 8px #aed581"></div>
+          <div>
+            <div class="ti-t">Stage — Rédaction Radiophonique</div>
+            <div class="ti-o">Radio Grésivaudan</div>
+            <div class="ti-c">Écriture et mise en voix de contenus radiophoniques.</div>
+          </div>
+        </div>
+
       </div></div>
       <div class="mets">
-        <div class="met"><span class="mv">1</span><span class="ml">ALTERNANCE</span></div>
+        <div class="met"><span class="mv">2</span><span class="ml">ALTERNANCES</span></div>
         <div class="met"><span class="mv">3</span><span class="ml">STAGES</span></div>
-        <div class="met"><span class="mv">3+</span><span class="ml">ANS EXP.</span></div>
+        <div class="met"><span class="mv">4+</span><span class="ml">ANS EXP.</span></div>
       </div>`
   },
   {
@@ -377,25 +455,116 @@ const PL = [
       </div>`
   },
   {
-    id:'contact', name:'CONTACT', sub:'Alternance · Disponible Sept. 2025',
+    id:'contact', name:'CONTACT', sub:'En alternance · ERMA CONCEPT · Savoie',
     color:0xf48fb1, hex:'#f48fb1', em:0x4a0020,
     size:.68, r:27.5, sp:.06, a:Math.PI*1.1, rot:.011, type:'pink',
     html:d=>`
-      <p class="desc">Disponible dès <strong>septembre 2025</strong> pour une alternance BTS SIO SLAM en Auvergne Rhône-Alpes. Je cherche à progresser en programmation sur des projets concrets, avec l'objectif d'évoluer vers le Data et l'IA.</p>
+      <!-- Status badge -->
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #ff8c4240;background:#ff8c420a;margin-bottom:2px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#00ff88;box-shadow:0 0 8px #00ff88;flex-shrink:0;animation:dotpls 1.4s ease-in-out infinite"></span>
+        <span style="font-size:8px;letter-spacing:3px;color:#00ff88;text-transform:uppercase">En alternance — ERMA CONCEPT · Grésy-sur-Aix</span>
+      </div>
+      <p class="desc">Actuellement en <strong>alternance BTS SIO SLAM</strong> au sein d'ERMA CONCEPT à Grésy-sur-Aix. Objectif à moyen terme : intégrer un <strong>Bachelor Data &amp; Business Intelligence</strong> et approfondir le domaine de l'intelligence artificielle.</p>
       <div><div class="sec">COORDONNÉES</div>
       <div class="tl2" style="--pc:${d.hex}">
         <div class="ti"><div class="ti-d">EMAIL</div><div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div><div><div class="ti-t">lianpitersilvente@gmail.com</div></div></div>
         <div class="ti"><div class="ti-d">MOBILE</div><div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div><div><div class="ti-t">06 99 94 03 41</div></div></div>
         <div class="ti"><div class="ti-d">ADRESSE</div><div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div><div><div class="ti-t">38660 Le Touvet</div><div class="ti-c">Mobilité : Auvergne Rhône-Alpes</div></div></div>
+        <div class="ti"><div class="ti-d">ALTERNANCE</div><div class="ti-dot" style="background:#ff8c42;box-shadow:0 0 8px #ff8c42"></div><div><div class="ti-t" style="color:#ff8c42">ERMA CONCEPT</div><div class="ti-o">Grésy-sur-Aix, Savoie · En cours</div></div></div>
       </div></div>
       <div class="mets">
         <div class="met"><span class="mv">24h</span><span class="ml">RÉPONSE</span></div>
-        <div class="met"><span class="mv">Sept.</span><span class="ml">DISPO 2025</span></div>
+        <div class="met"><span class="mv">En cours</span><span class="ml">ALTERNANCE</span></div>
         <div class="met"><span class="mv">RA</span><span class="ml">MOBILITÉ</span></div>
       </div>
       <div class="cta">
         <a href="mailto:lianpitersilvente@gmail.com" class="btn btnp">✉ ENVOYER EMAIL</a>
         <a href="tel:0699940341" class="btn btns">📱 APPELER</a>
+      </div>`
+  },
+  {
+    id:'erma', name:'ERMA CONCEPT', sub:'Alternance · Grésy-sur-Aix, Savoie',
+    color:0xff8c42, hex:'#ff8c42', em:0x5a1f00,
+    size:1.08, r:32, sp:.045, a:Math.PI*.65, rot:.008, type:'metal',
+    html:d=>`
+      <!-- Company header -->
+      <div style="border:1px solid ${d.hex}30;background:${d.hex}08;padding:13px 14px;margin-bottom:0;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,${d.hex},transparent);opacity:.6"></div>
+        <div style="font-size:7px;letter-spacing:4px;color:${d.hex};opacity:.6;margin-bottom:4px">ENTREPRISE D'ACCUEIL — ALTERNANCE 2025</div>
+        <div style="font-family:var(--fd);font-size:16px;font-weight:800;color:#fff;letter-spacing:3px">ERMA CONCEPT</div>
+        <div style="font-size:8px;color:rgba(200,220,240,.55);letter-spacing:1.5px;margin-top:3px">Ingénierie · Automatisme industriel · Savoie</div>
+      </div>
+
+      <div><div class="sec">PRÉSENTATION</div>
+      <p class="desc">Entreprise <strong>100% française</strong> de 25 collaborateurs, fondée en 1999, localisée à <strong>Grésy-sur-Aix (73100, Savoie)</strong> avec une antenne à Mexico City. Spécialisée dans la <strong>conception et fabrication de lignes automatiques de peinture, laquage, vernissage et séchage</strong>.</p>
+      <p class="desc" style="margin-top:6px">Ses secteurs d'application : <strong>parfumerie</strong> (flacons), <strong>cosmétique</strong> (pots de crème), <strong>vins &amp; spiritueux</strong>, arts de la table. Maîtrise toute la chaîne : études 3D, fabrication, assemblage, tests, livraison et mise en service sur site.</p></div>
+
+      <div><div class="sec">LOCALISATION</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div class="card" style="border-color:${d.hex}28">
+          <div class="card-i">📍</div>
+          <div class="card-t">SIÈGE</div>
+          <div class="card-d">151 Imp. le Pré Mûrier<br>73100 Grésy-sur-Aix<br>Savoie, France</div>
+        </div>
+        <div class="card" style="border-color:${d.hex}28">
+          <div class="card-i">🌍</div>
+          <div class="card-t">INTERNATIONAL</div>
+          <div class="card-d">Antenne à Mexico City<br>95%+ export<br>CA : ~8M€</div>
+        </div>
+      </div></div>
+
+      <div><div class="sec">MES MISSIONS EN ALTERNANCE</div>
+      <div class="tl2" style="--pc:${d.hex}">
+
+        <div class="ti">
+          <div class="ti-d">Mission 1</div>
+          <div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div>
+          <div>
+            <div class="ti-t">Gestion du Parc Informatique</div>
+            <div class="ti-c">Inventaire, suivi et maintenance du matériel. Gestion du cycle de vie des équipements (PC, périphériques, imprimantes). Diagnostic de pannes hardware et software, interventions correctives.</div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">Mission 2</div>
+          <div class="ti-dot" style="background:#ffb347;box-shadow:0 0 8px #ffb347"></div>
+          <div>
+            <div class="ti-t">Mise en Place de Postes</div>
+            <div class="ti-c">Configuration et déploiement de postes de travail Windows. Installation des logiciels métier, paramétrage réseau, jonction au domaine Active Directory et préparation des environnements utilisateurs.</div>
+          </div>
+        </div>
+
+        <div class="ti">
+          <div class="ti-d">Mission 3</div>
+          <div class="ti-dot" style="background:#ffd580;box-shadow:0 0 8px #ffd580"></div>
+          <div>
+            <div class="ti-t">Administration Microsoft 365</div>
+            <div class="ti-c">Gestion des comptes utilisateurs, groupes et licences. Administration Exchange Online (boîtes mail, listes de distribution), Teams et SharePoint. Gestion des permissions et sécurité.</div>
+          </div>
+        </div>
+
+      </div></div>
+
+      <div><div class="sec">STACK TECHNIQUE</div>
+      <div class="tags">
+        <span class="tag">Windows Server</span>
+        <span class="tag">Active Directory</span>
+        <span class="tag">Microsoft 365</span>
+        <span class="tag">Exchange Online</span>
+        <span class="tag">Teams Admin</span>
+        <span class="tag">SharePoint</span>
+        <span class="tag">Intune / MDM</span>
+        <span class="tag">DNS / DHCP</span>
+      </div></div>
+
+      <div class="mets">
+        <div class="met"><span class="mv">25</span><span class="ml">COLLABORATEURS</span></div>
+        <div class="met"><span class="mv">~8M€</span><span class="ml">CHIFFRE D'AFF.</span></div>
+        <div class="met"><span class="mv">1999</span><span class="ml">FONDÉE EN</span></div>
+      </div>
+      <div class="cta">
+        <a href="https://ermaconcept.com" target="_blank" class="btn btnp">🌐 SITE WEB</a>
+        <a href="https://www.google.com/maps/search/Grésy-sur-Aix+73100" target="_blank" class="btn btns">📍 LOCALISATION</a>
       </div>`
   }
 ];
@@ -777,6 +946,36 @@ function mkTex(hex,type){
     ctx.fillStyle=grd; ctx.fillRect(0,0,S,S);
     ctx.strokeStyle='rgba(255,255,255,.1)'; ctx.lineWidth=.6;
     for(let i=0;i<S;i+=15){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,S);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(S,i);ctx.stroke();}
+  } else if(type==='metal'){
+    // Industrial/metallic: dark base with orange hot-metal veins
+    const grd=ctx.createRadialGradient(S*.42,S*.38,0,S*.5,S*.5,S*.6);
+    grd.addColorStop(0,'#2a1200'); grd.addColorStop(.4,`#${Math.round(r*.6).toString(16).padStart(2,'0')}${Math.round(g2*.35).toString(16).padStart(2,'0')}00`); grd.addColorStop(1,'#120800');
+    ctx.fillStyle=grd; ctx.fillRect(0,0,S,S);
+    // hot metal veins
+    for(let i=0;i<18;i++){
+      const x1=Math.random()*S,y1=Math.random()*S,x2=Math.random()*S,y2=Math.random()*S;
+      const gv=ctx.createLinearGradient(x1,y1,x2,y2);
+      gv.addColorStop(0,'rgba(0,0,0,0)');
+      gv.addColorStop(.5,`rgba(${r},${Math.round(g2*.6)},0,${Math.random()*.35+.1})`);
+      gv.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.strokeStyle=gv; ctx.lineWidth=Math.random()*3+1;
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    }
+    // hot spots / embers
+    for(let i=0;i<60;i++){
+      const cx=Math.random()*S,cy=Math.random()*S,cr=Math.random()*5+.5;
+      const gs=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      gs.addColorStop(0,`rgba(255,${Math.round(Math.random()*120)},0,${Math.random()*.5+.2})`);
+      gs.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2); ctx.fillStyle=gs; ctx.fill();
+    }
+    // surface scratches
+    ctx.globalAlpha=.08; ctx.strokeStyle='rgba(255,180,80,.8)'; ctx.lineWidth=.5;
+    for(let i=0;i<30;i++){
+      const x=Math.random()*S,y=Math.random()*S,len=Math.random()*40+10,ang=Math.random()*Math.PI;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ang)*len,y+Math.sin(ang)*len); ctx.stroke();
+    }
+    ctx.globalAlpha=1;
   } else {
     const grd=ctx.createRadialGradient(S*.37,S*.3,0,S*.5,S*.5,S*.62);
     grd.addColorStop(0,'#fff'); grd.addColorStop(.3,hex); grd.addColorStop(1,`rgba(${Math.round(r*.4)},${Math.round(g2*.2)},${Math.round(b*.3)},.8)`);
