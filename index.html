@@ -329,7 +329,7 @@ function mkTex(hex, type){
     }
 
     const img = new Image();
-    img.crossOrigin = "Anonymous"; // Obligatoire pour charger l'URL dans WebGL
+    img.crossOrigin = "Anonymous";
     img.onload = () => {
       ctx.fillStyle='#f5f6f8'; ctx.fillRect(0,0,S,S);
       for(let i=0;i<600;i++){
@@ -1081,8 +1081,32 @@ function updateBloom(){
 // ═══════════════════════════════════════════════════════
 // 5. GENERATION DES PLANETES
 // ═══════════════════════════════════════════════════════
-pObjs.forEach(g=>{
-  const d=g.userData;
+const pObjs=[];
+PL.forEach(d=>{
+  const grp=new THREE.Group(); sc.add(grp);
+
+  const trailMat=makeTrailMat(d.color);
+  sc.add(new THREE.Line(makeOrbitGeo(d.r), trailMat));
+
+  const orb=new THREE.Mesh(new THREE.RingGeometry(d.r-.04,d.r+.04,128),
+    new THREE.MeshBasicMaterial({color:0x00cfff,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
+  orb.rotation.x=-Math.PI/2; sc.add(orb);
+
+  const mat=new THREE.MeshStandardMaterial({
+    map:mkTex(d.hex,d.type), color:new THREE.Color(d.color),
+    emissive:new THREE.Color(d.em), emissiveIntensity:.28,
+    roughness:.62, metalness:.1
+  });
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(d.size,56,56),mat);
+
+  if(d.hasRing){
+    [[d.size*1.5,d.size*2.05,.55,0xd4b87a],[d.size*2.1,d.size*2.65,.22,0xa89055]].forEach(([ri,ro,op,col])=>{
+      const rm=new THREE.Mesh(new THREE.RingGeometry(ri,ro,64),
+        new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:false}));
+      rm.rotation.x=Math.PI/2.7; mesh.add(rm);
+    });
+  }
+
   const atmMat=new THREE.ShaderMaterial({
     uniforms:{uC:{value:new THREE.Color(d.color)},uI:{value:.28}},
     vertexShader:`
@@ -1101,9 +1125,12 @@ pObjs.forEach(g=>{
     transparent:true, depthWrite:false, side:THREE.FrontSide, blending:THREE.AdditiveBlending
   });
   const atm=new THREE.Mesh(new THREE.SphereGeometry(d.size*1.25,32,32),atmMat);
+
   const pl=new THREE.PointLight(new THREE.Color(d.color),.12,d.size*5.5);
-  g.add(atm,pl);
-  g.userData.atmMat = atmMat;
+  grp.add(mesh,atm,pl);
+  grp.position.x=Math.cos(d.a)*d.r; grp.position.z=Math.sin(d.a)*d.r;
+  grp.userData={...d, ca:d.a, mesh, mat, atmMat, trailMat};
+  pObjs.push(grp);
 });
 
 // ═══════════════════════════════════════════════════════
