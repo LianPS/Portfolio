@@ -570,24 +570,10 @@ const PL = [
         <div style="font-size:8.5px;color:rgba(200,240,255,.55);letter-spacing:1.5px;margin-top:2px">Thèmes : Exécution IA Locale & Cryptographie PQC</div>
       </div>
 
-      <div><div class="sec">DÉMARCHE ET OUTILS DE COLLECTE</div>
-      <div class="cards" style="margin-bottom:15px;">
-        <div class="card" style="border-color:${d.hex}20">
-          <div class="card-i">📡</div>
-          <div class="card-t">COLLECTE (PUSH/PULL)</div>
-          <div class="card-d">Feedly (RSS), Alertes ANSSI / CERT-FR, GitHub Trending, lebigdata.fr, Emergent Mind</div>
-        </div>
-        <div class="card" style="border-color:${d.hex}20">
-          <div class="card-i">🗂️</div>
-          <div class="card-t">CURATION</div>
-          <div class="card-d">Notion (fiches de synthèse structurées), Pocket (stockage différé), Dépôts Markdown</div>
-        </div>
-      </div></div>
-
-      <div style="padding-top:15px; border-top:1px dashed ${d.hex}40;">
+      <div style="padding-top:5px;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:${d.hex};letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 1 : L'optimisation pour l'exécution IA en local</div>
 
-        <p class="desc" style="margin-bottom:12px;">L'exécution d'un modèle d'inférence en local garantit la souveraineté des données et supprime la latence réseau. Les modèles classiques étant trop denses (calculs en virgule flottante), l'industrie développe des solutions logicielles et algorithmiques pour réduire drastiquement l'empreinte matérielle.</p>
+        <p class="desc" style="margin-bottom:12px;">L'exécution d'un modèle d'inférence en local garantit la souveraineté des données et supprime la latence réseau. Les <strong>LLM (Large Language Models)</strong> classiques étant trop lourds, l'industrie développe des <strong>SLM (Small Language Models)</strong> et des solutions algorithmiques pour réduire drastiquement l'empreinte matérielle.</p>
 
         <div style="border:1px solid ${d.hex}25;background:${d.hex}05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,${d.hex},${d.hex}22)"></div>
@@ -597,53 +583,63 @@ const PL = [
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">ALGORITHMIE</span>
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">1-BIT LLM</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">La méthode la plus extrême pour alléger un modèle consiste à modifier ses mathématiques fondamentales. L'architecture BitNet remplace les poids en virgule flottante classiques par une <strong style="color:${d.hex}">quantification ternaire (-1, 0, 1)</strong>. Les opérations de multiplication matricielle (MatMul) sont remplacées par de simples additions, permettant l'inférence sur un CPU basique.</p>
+          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">La méthode la plus extrême pour alléger un modèle consiste à modifier ses mathématiques fondamentales. L'architecture BitNet remplace les poids en virgule flottante classiques par une <strong style="color:${d.hex}">quantification ternaire (-1, 0, 1)</strong>. Les opérations de multiplication matricielle sont remplacées par de simples additions, permettant l'inférence sur un CPU basique.</p>
         </div>
 
         <div style="border:1px solid #a78bfa25;background:#a78bfa05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#a78bfa,#a78bfa22)"></div>
           <div style="font-size:6.5px;letter-spacing:4px;color:#a78bfa;opacity:.7;margin-bottom:4px;text-transform:uppercase">Décembre 2024 · L'application matérielle · Hugging Face</div>
-          <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">Microsoft Phi-4 : Small Language Models (SLM)</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">Microsoft Phi-4 : SLM sur architecture locale</div>
           <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
             <span class="tag" style="border-color:#a78bfa40;color:#a78bfa;background:#a78bfa0a">EDGE COMPUTING</span>
             <span class="tag" style="border-color:#a78bfa40;color:#a78bfa;background:#a78bfa0a">NPU</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(200,185,252,.78);line-height:1.9;margin-bottom:8px">En parallèle de la recherche sur le ternaire, l'optimisation s'applique aux architectures standards via la réduction d'échelle. Phi-4 est un modèle compact (14 milliards de paramètres) structuré pour déléguer sa charge de calcul directement aux <strong style="color:#d4bbff">puces NPU (Neural Processing Unit)</strong> des postes clients, garantissant un fonctionnement 100% hors-ligne.</p>
+          <p style="font-size:10.5px;color:rgba(200,185,252,.78);line-height:1.9;margin-bottom:8px">En parallèle de la recherche sur le ternaire, l'optimisation s'applique via la réduction d'échelle. Phi-4 est un modèle compact structuré pour déléguer sa charge de calcul directement aux <strong style="color:#d4bbff">puces NPU (Neural Processing Unit)</strong> des postes clients, garantissant un fonctionnement 100% hors-ligne.</p>
         </div>
 
-        <div class="sec">IMPACTS POUR LE DÉVELOPPEMENT (SLAM)</div>
-        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">L'architecture des applications évolue : les logiciels n'interrogent plus d'API distantes mais intègrent directement des frameworks d'inférence (Llama.cpp, WebGPU). <br><strong style="color:${d.hex}">POC validé :</strong> Exécution locale d'un modèle SLM quantifié (format GGUF) via l'outil Ollama, avec vérification réseau de l'absence d'échanges de paquets avec l'extérieur lors de la génération de texte.</p>
+        <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
+        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">L'architecture des applications évolue : les logiciels n'interrogent plus d'API distantes mais intègrent directement des frameworks d'inférence. <br><strong style="color:${d.hex}">POC validé :</strong> Exécution locale d'un modèle SLM quantifié au format GGUF via le logiciel Ollama. Vérification réseau effectuée confirmant l'absence d'échanges de paquets avec l'extérieur lors de la génération de texte.</p>
       </div>
 
       <div style="padding-top:15px; border-top:1px dashed #f472b640;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#f472b6;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 2 : Cryptographie Post-Quantique (PQC)</div>
 
-        <p class="desc" style="margin-bottom:12px;">D'ici 2030, la puissance de calcul des ordinateurs quantiques compromettra les algorithmes de chiffrement asymétrique standards (RSA, ECC). La transition logicielle vers la <strong style="color:#f472b6">Cryptographie Post-Quantique (PQC)</strong> est une directive prioritaire pour sécuriser les systèmes d'information.</p>
+        <p class="desc" style="margin-bottom:12px;">D'ici 2030, la puissance de calcul des ordinateurs quantiques compromettra les algorithmes de chiffrement asymétrique standards. La transition vers la <strong style="color:#f472b6">Cryptographie Post-Quantique (PQC)</strong> est une directive prioritaire pour sécuriser les systèmes d'information.</p>
 
         <div style="border:1px solid #f472b625;background:#f472b605;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#f472b6,#f472b622)"></div>
-          <div style="font-size:6.5px;letter-spacing:4px;color:#f472b6;opacity:.7;margin-bottom:4px;text-transform:uppercase">Août 2024 · Directives et Standards · NIST / ANSSI</div>
+          <div style="font-size:6.5px;letter-spacing:4px;color:#f472b6;opacity:.7;margin-bottom:4px;text-transform:uppercase">Août 2024 · Directives et Standards</div>
           <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">Standardisation NIST et directive d'hybridation</div>
           <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
             <span class="tag" style="border-color:#f472b640;color:#f472b6;background:#f472b60a">CYBERSÉCURITÉ</span>
             <span class="tag" style="border-color:#f472b640;color:#f472b6;background:#f472b60a">STANDARDS NIST</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(252,200,225,.78);line-height:1.9;margin-bottom:8px">Validation des premiers standards de chiffrement par réseaux (ML-KEM, ML-DSA) par le NIST. L'ANSSI impose une doctrine stricte : l'<strong style="color:#f472b6">hybridation</strong>. Le code source doit combiner un algorithme classique (ex: ECDH) avec un algorithme PQC pour éviter toute vulnérabilité liée à la jeunesse des nouvelles implémentations.</p>
+          <p style="font-size:10.5px;color:rgba(252,200,225,.78);line-height:1.9;margin-bottom:8px">Validation des premiers standards de chiffrement par réseaux par le <strong>NIST (National Institute of Standards and Technology)</strong>. En France, l'<strong>ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)</strong> impose une doctrine stricte : l'<strong style="color:#f472b6">hybridation</strong>. Le code source doit combiner un algorithme classique avec un algorithme PQC.</p>
         </div>
 
         <div style="border:1px solid #fbbf2425;background:#fbbf2405;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#fbbf24,#fbbf2422)"></div>
-          <div style="font-size:6.5px;letter-spacing:4px;color:#fbbf24;opacity:.7;margin-bottom:4px;text-transform:uppercase">2024-2025 · Déploiement applicatif · IETF / Signal</div>
+          <div style="font-size:6.5px;letter-spacing:4px;color:#fbbf24;opacity:.7;margin-bottom:4px;text-transform:uppercase">2024-2025 · Déploiement applicatif · IETF</div>
           <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">Intégration dans les couches de transport</div>
           <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
             <span class="tag" style="border-color:#fbbf2440;color:#fbbf24;background:#fbbf240a">PROTOCOLES</span>
             <span class="tag" style="border-color:#fbbf2440;color:#fbbf24;background:#fbbf240a">RÉSEAU / SLAM</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(252,240,200,.78);line-height:1.9;margin-bottom:8px">Les architectures serveur et protocoles de messagerie (Signal PQXDH) intègrent ces standards dans TLS 1.3. L'augmentation du volume des clés PQC exige l'adaptation du traitement de la fragmentation des paquets réseaux au niveau de l'infrastructure logicielle.</p>
+          <p style="font-size:10.5px;color:rgba(252,240,200,.78);line-height:1.9;margin-bottom:8px">L'<strong>IETF (Internet Engineering Task Force)</strong> intègre ces standards dans TLS 1.3. L'augmentation du volume des clés PQC exige l'adaptation du traitement de la fragmentation des paquets réseaux au niveau de l'infrastructure logicielle.</p>
         </div>
 
-        <div class="sec">IMPACTS POUR LE DÉVELOPPEMENT (SLAM)</div>
-        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:10px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration, sans modification du code central. <br><strong style="color:#f472b6">POC validé :</strong> Exécution de l'utilitaire Trivy sur un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
+        <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
+        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration. <br><strong style="color:#f472b6">POC validé :</strong> Déploiement de l'utilitaire d'analyse Trivy sur un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
+      </div>
+
+      <div style="padding-top:10px; border-top:1px solid rgba(0,207,255,.15);">
+        <div class="sec">SOURCES ET LIENS DE RÉFÉRENCE</div>
+        <div style="font-size:9.5px;color:rgba(200,235,252,.7);line-height:1.8;padding-left:5px;">
+          • <a href="https://cyber.gouv.fr/enjeux-technologiques/cryptographie-post-quantique/" target="_blank" style="color:${d.hex};text-decoration:none;">Dossier ANSSI : Transition vers la cryptographie post-quantique</a><br>
+          • <a href="https://www.nist.gov/pqcrypto" target="_blank" style="color:${d.hex};text-decoration:none;">NIST : Post-Quantum Cryptography Standardization</a><br>
+          • <a href="https://github.com/microsoft/BitNet" target="_blank" style="color:${d.hex};text-decoration:none;">Microsoft Research : Dépôt Github BitNet (1-bit LLM)</a><br>
+          • <a href="https://huggingface.co/microsoft/phi-4" target="_blank" style="color:${d.hex};text-decoration:none;">Hugging Face : Modèle Microsoft Phi-4</a>
+        </div>
       </div>
 
       <div class="mets" style="margin-top:15px;">
