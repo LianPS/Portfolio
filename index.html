@@ -322,30 +322,41 @@ function mkTex(hex, type){
     ctx.restore();
   
   } else if(type==='erma'){
+    // Fond blanc cassé mat
     ctx.fillStyle='#f5f6f8'; ctx.fillRect(0,0,S,S);
-    for(let i=0;i<600;i++){
-      ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.025})`;
+    
+    // Texture de surface douce
+    for(let i=0;i<400;i++){
+      ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.02})`;
       ctx.beginPath(); ctx.arc(Math.random()*S, Math.random()*S, Math.random()*15+2, 0, Math.PI*2); ctx.fill();
     }
+    
+    // LOGO ERMA DESSINÉ EN CODE NATIF (Zéro Fichier Externe)
+    [S*0.25, S*0.75].forEach(x => {
+      // "ERMA"
+      ctx.fillStyle = '#181818';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = '900 80px "Syne", sans-serif'; 
+      ctx.fillText('ERMA', x, S/2 - 20);
 
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.onload = () => {
-      ctx.fillStyle='#f5f6f8'; ctx.fillRect(0,0,S,S);
-      for(let i=0;i<600;i++){
-        ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.025})`;
-        ctx.beginPath(); ctx.arc(Math.random()*S, Math.random()*S, Math.random()*15+2, 0, Math.PI*2); ctx.fill();
-      }
-      
-      let aspect = img.naturalHeight / img.naturalWidth;
-      let w = S * 0.45;
-      let h = w * aspect;
-      
-      ctx.drawImage(img, S*0.25 - w/2, S/2 - h/2, w, h);
-      ctx.drawImage(img, S*0.75 - w/2, S/2 - h/2, w, h);
-      tex.needsUpdate = true;
-    };
-    img.src = 'https://imgs.search.brave.com/2vJlfiteD12DPwiW24Nuf9tVyeU492pGDTbeRnvhKBE/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lcm1h/Y29uY2VwdC5jb20v/YXBwL3VwbG9hZHMv/MjAyMS8wNC9sb2dv/LWVybWFjb25jZXB0/LnBuZw';
+      // Ligne bleue biseautée
+      ctx.fillStyle = '#144b8a';
+      ctx.beginPath();
+      ctx.moveTo(x - 110, S/2 + 20);
+      ctx.lineTo(x + 5, S/2 + 20);
+      ctx.lineTo(x - 5, S/2 + 32);
+      ctx.lineTo(x - 110, S/2 + 32);
+      ctx.fill();
+
+      // "CONCEPT"
+      ctx.fillStyle = '#181818';
+      ctx.textAlign = 'left';
+      ctx.font = '700 24px "Syne", sans-serif';
+      ctx.fillText('CONCEPT', x + 12, S/2 + 26);
+    });
+    
+    tex.needsUpdate = true;
 
   } else if(type==='rocky'||type==='surface'){
     ctx.fillStyle=hex; ctx.fillRect(0,0,S,S);
@@ -684,7 +695,7 @@ const PL = [
 
       <div style="padding-top:5px;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:${d.hex};letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 1 : L'optimisation pour l'exécution IA en local</div>
-        <p class="desc" style="margin-bottom:12px;">L'exécution d'un modèle d'inférence en local garantit la souveraineté des données et supprime la latence réseau. Les <strong>LLM (Large Language Models)</strong> classiques étant trop lourds, l'industrie développe des <strong>SLM (Small Language Models)</strong> et des solutions algorithmiques pour réduire drastiquement l'empreinte matérielle.</p>
+        <p class="desc" style="margin-bottom:12px;">L'exécution locale d'une IA garantit la confidentialité des données et supprime la dépendance au Cloud. Le défi technique majeur réside dans la mémoire : les modèles classiques utilisent des milliards de <strong>poids en virgule flottante</strong> (nombres décimaux très précis de type <code style="color:${d.hex}">float16</code>), saturant la RAM et nécessitant d'énormes GPU. L'enjeu pour les développeurs est d'utiliser des <strong>SLM (Small Language Models)</strong> aux architectures optimisées.</p>
 
         <div style="border:1px solid ${d.hex}25;background:${d.hex}05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,${d.hex},${d.hex}22)"></div>
@@ -694,7 +705,7 @@ const PL = [
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">ALGORITHMIE</span>
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">1-BIT LLM</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">La méthode la plus extrême pour alléger un modèle consiste à modifier ses mathématiques fondamentales. L'architecture BitNet remplace les poids en virgule flottante classiques par une <strong style="color:${d.hex}">quantification ternaire (-1, 0, 1)</strong>. Les opérations de multiplication matricielle sont remplacées par de simples additions, permettant l'inférence sur un CPU basique.</p>
+          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">L'architecture BitNet illustre une optimisation algorithmique radicale. Elle abandonne totalement la virgule flottante via une <strong style="color:${d.hex}">quantification ternaire (-1, 0, 1)</strong>. Informatiquement, les coûteuses multiplications matricielles de décimaux sont remplacées par de simples additions d'entiers (<code style="color:${d.hex}">int</code>). Cette maîtrise des types de données réduit l'empreinte mémoire de 90%, rendant le modèle exécutable sur un CPU standard.</p>
         </div>
 
         <div style="border:1px solid #a78bfa25;background:#a78bfa05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
@@ -709,7 +720,7 @@ const PL = [
         </div>
 
         <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
-        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">L'architecture des applications évolue : les logiciels n'interrogent plus d'API distantes mais intègrent directement des frameworks d'inférence. <br><strong style="color:${d.hex}">POC validé :</strong> Exécution locale d'un modèle SLM quantifié au format GGUF via le logiciel Ollama. Vérification réseau effectuée confirmant l'absence d'échanges de paquets avec l'extérieur lors de la génération de texte.</p>
+        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le métier de développeur évolue : plutôt que de programmer des requêtes vers une API Cloud externe, nous devons désormais <strong style="color:${d.hex}">embarquer le moteur d'IA</strong> au cœur de l'application locale. <br><strong style="color:${d.hex}">POC validé :</strong> Exécution locale hors-ligne d'un modèle SLM (quantifié au format GGUF) via le framework Ollama, confirmant l'absence totale de requêtes réseau lors de l'inférence.</p>
       </div>
 
       <div style="padding-top:15px; border-top:1px dashed #f472b640;">
@@ -1081,32 +1092,8 @@ function updateBloom(){
 // ═══════════════════════════════════════════════════════
 // 5. GENERATION DES PLANETES
 // ═══════════════════════════════════════════════════════
-const pObjs=[];
-PL.forEach(d=>{
-  const grp=new THREE.Group(); sc.add(grp);
-
-  const trailMat=makeTrailMat(d.color);
-  sc.add(new THREE.Line(makeOrbitGeo(d.r), trailMat));
-
-  const orb=new THREE.Mesh(new THREE.RingGeometry(d.r-.04,d.r+.04,128),
-    new THREE.MeshBasicMaterial({color:0x00cfff,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
-  orb.rotation.x=-Math.PI/2; sc.add(orb);
-
-  const mat=new THREE.MeshStandardMaterial({
-    map:mkTex(d.hex,d.type), color:new THREE.Color(d.color),
-    emissive:new THREE.Color(d.em), emissiveIntensity:.28,
-    roughness:.62, metalness:.1
-  });
-  const mesh=new THREE.Mesh(new THREE.SphereGeometry(d.size,56,56),mat);
-
-  if(d.hasRing){
-    [[d.size*1.5,d.size*2.05,.55,0xd4b87a],[d.size*2.1,d.size*2.65,.22,0xa89055]].forEach(([ri,ro,op,col])=>{
-      const rm=new THREE.Mesh(new THREE.RingGeometry(ri,ro,64),
-        new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:false}));
-      rm.rotation.x=Math.PI/2.7; mesh.add(rm);
-    });
-  }
-
+pObjs.forEach(g=>{
+  const d=g.userData;
   const atmMat=new THREE.ShaderMaterial({
     uniforms:{uC:{value:new THREE.Color(d.color)},uI:{value:.28}},
     vertexShader:`
@@ -1125,12 +1112,9 @@ PL.forEach(d=>{
     transparent:true, depthWrite:false, side:THREE.FrontSide, blending:THREE.AdditiveBlending
   });
   const atm=new THREE.Mesh(new THREE.SphereGeometry(d.size*1.25,32,32),atmMat);
-
   const pl=new THREE.PointLight(new THREE.Color(d.color),.12,d.size*5.5);
-  grp.add(mesh,atm,pl);
-  grp.position.x=Math.cos(d.a)*d.r; grp.position.z=Math.sin(d.a)*d.r;
-  grp.userData={...d, ca:d.a, mesh, mat, atmMat, trailMat};
-  pObjs.push(grp);
+  g.add(atm,pl);
+  g.userData.atmMat = atmMat;
 });
 
 // ═══════════════════════════════════════════════════════
