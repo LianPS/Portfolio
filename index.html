@@ -363,7 +363,7 @@ const PL = [
       </div>`
   },
   {
-    id:'exps', name:'EXPÉRIENCES', sub:'Alternance & Stages · 2021 → Aujourd\'hui',
+    id:'exps', name:'EXPÉRIENCES', sub:"Alternance & Stages · 2021 → Aujourd'hui",
     color:0xef9a9a, hex:'#ef9a9a', em:0x5a0000,
     size:.92, r:18.5, sp:.11, a:Math.PI*1.5, rot:.006, type:'rocky',
     html:d=>`
@@ -559,7 +559,7 @@ const PL = [
       </div>`
   },
   {
-    id:'veille', name:'VEILLE INFORMATIQUE', sub:'L\\'émergence des SLM et de l\\'IA locale',
+    id:'veille', name:'VEILLE INFORMATIQUE', sub:"L'émergence des SLM et de l'IA locale",
     color:0x00e5ff, hex:'#00e5ff', em:0x002f3a,
     size:1.15, r:36.5, sp:.035, a:Math.PI*.3, rot:.006, type:'scanner',
     html:d=>`
@@ -1092,11 +1092,10 @@ function mkTex(hex,type){
   return new THREE.CanvasTexture(c);
 }
 
-// ── ORBIT TRAIL (FIX: no attribute redeclaration) ──
+// ── ORBIT TRAIL ──
 function makeTrailMat(color){
   return new THREE.ShaderMaterial({
     uniforms:{uAngle:{value:0}, uColor:{value:new THREE.Color(color)}},
-    // NOTE: Do NOT redeclare "position" — Three.js injects it automatically
     vertexShader:`
       uniform float uAngle;
       varying float vFade;
@@ -1129,7 +1128,7 @@ const pObjs=[];
 PL.forEach(d=>{
   const grp=new THREE.Group(); sc.add(grp);
 
-  // orbit trail — FIXED shader
+  // orbit trail
   const trailMat=makeTrailMat(d.color);
   sc.add(new THREE.Line(makeOrbitGeo(d.r), trailMat));
 
