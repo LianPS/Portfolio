@@ -441,8 +441,8 @@ const PL = [
   },
   {
     id:'erma', name:'ERMA CONCEPT', sub:'Alternance · Grésy-sur-Aix, Savoie',
-    color:0xffffff, hex:'#ffffff', em:0x111111,
-    size:1.08, r:32, sp:.045, a:Math.PI*.65, rot:.008, type:'erma',
+    color:0xff8c42, hex:'#ff8c42', em:0x5a1f00,
+    size:1.08, r:32, sp:.045, a:Math.PI*.65, rot:.006, type:'metal',
     html:d=>`
       <div style="border:1px solid #ff8c4230;background:#ff8c4208;padding:13px 14px;margin-bottom:0;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ff8c42,transparent);opacity:.6"></div>
@@ -519,7 +519,7 @@ const PL = [
         <div class="met"><span class="mv">1999</span><span class="ml">FONDÉE EN</span></div>
       </div>
       <div class="cta">
-        <a href="https://ermaconcept.com" target="_blank" class="btn btnp" style="background:#ff8c42;border-color:#ff8c42;">🌐 SITE WEB</a>
+        <a href="https://ermaconcept.com" target="_blank" class="btn btnp">🌐 SITE WEB</a>
         <a href="https://www.google.com/maps/search/Grésy-sur-Aix+73100" target="_blank" class="btn btns">📍 LOCALISATION</a>
       </div>`
   },
@@ -592,7 +592,7 @@ const PL = [
         </div>
 
         <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
-        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration. <br><strong style="color:#f472b6">POC validé :</strong> Déploiement de l'utilitaire d'analyse Trivy sur un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
+        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration. <br><strong style="color:#f472b6">POC validé :</strong> Déploiement de l'utilitaire d'analyse Trivy on un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
       </div>
 
       <div style="padding-top:10px; border-top:1px solid rgba(0,207,255,.15);">
@@ -785,7 +785,7 @@ const sunMat = new THREE.ShaderMaterial({
       float spots=fbm(vP*8.+uT*.35);
       float hotspot=smoothstep(.62,.85,spots);
       vec3 col=mix(uC1,uC2,plasma);
-      col=mix(col,uC3,pow(plasma,1.4));
+      col=mix(uC3,pow(plasma,1.4));
       col=mix(col,uC4,hotspot*.6);
       float vdot=abs(dot(vN,normalize(-vP)));
       float limb=pow(1.-vdot,1.4);
@@ -937,23 +937,6 @@ function mkTex(hex,type){
     ctx.save(); ctx.globalAlpha=.2; ctx.strokeStyle='rgba(255,255,255,.9)'; ctx.lineWidth=2;
     for(let i=0;i<2;i++){ctx.beginPath();ctx.ellipse(S*.44,S*(.27+i*.19),S*.31,S*.054,-.22,0,Math.PI*2);ctx.stroke();}
     ctx.restore();
-  } else if(type==='erma'){
-    ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,S,S);
-    for(let i=0;i<150;i++){
-      const cx=Math.random()*S,cy=Math.random()*S,cr=Math.random()*8+1;
-      const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
-      grd.addColorStop(0,`rgba(0,0,0,${Math.random()*.08})`); grd.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2); ctx.fillStyle=grd; ctx.fill();
-    }
-    ctx.textAlign='center'; ctx.textBaseline='middle';
-    for(let y=S*.25; y<S; y+=S*.5){
-      for(let x=S*.25; x<=S*1.25; x+=S*.5){
-        ctx.fillStyle='#ff8c42'; ctx.font='bold 28px sans-serif';
-        ctx.fillText('ERMA', x, y-12);
-        ctx.fillStyle='#333333'; ctx.font='bold 18px sans-serif';
-        ctx.fillText('CONCEPT', x, y+12);
-      }
-    }
   } else if(type==='rocky'||type==='surface'){
     ctx.fillStyle=hex; ctx.fillRect(0,0,S,S);
     for(let i=0;i<300;i++){
@@ -977,34 +960,50 @@ function mkTex(hex,type){
     ctx.strokeStyle='rgba(255,255,255,.1)'; ctx.lineWidth=.6;
     for(let i=0;i<S;i+=15){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,S);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(S,i);ctx.stroke();}
   } else if(type==='scanner'){
-    ctx.fillStyle='#010c14'; ctx.fillRect(0,0,S,S);
-    ctx.strokeStyle='rgba(0,229,255,.18)'; ctx.lineWidth=.7;
-    for(let y=0;y<S;y+=18){
-      for(let x=0;x<S;x+=21){
-        const ox=y%2===0?0:10.5;
-        ctx.beginPath();
-        for(let i=0;i<6;i++){
-          const a=i*Math.PI/3, rx=x+ox+Math.cos(a)*9, ry=y+Math.sin(a)*9;
-          i===0?ctx.moveTo(rx,ry):ctx.lineTo(rx,ry);
-        }
-        ctx.closePath(); ctx.stroke();
-      }
-    }
-    for(let i=0;i<4;i++){
-      const cx=S/2, cy=S/2, r=30+i*38;
-      const grd=ctx.createRadialGradient(cx,cy,r-4,cx,cy,r+4);
-      grd.addColorStop(0,'rgba(0,229,255,0)');
-      grd.addColorStop(.5,`rgba(0,229,255,${.22-i*.04})`);
-      grd.addColorStop(1,'rgba(0,229,255,0)');
-      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
-      ctx.strokeStyle=grd; ctx.lineWidth=4; ctx.stroke();
-    }
-    for(let i=0;i<18;i++){
-      const nx=Math.random()*S, ny=Math.random()*S, nr=Math.random()*4+1;
-      const ng=ctx.createRadialGradient(nx,ny,0,nx,ny,nr*3);
-      ng.addColorStop(0,'rgba(0,229,255,.9)'); ng.addColorStop(1,'rgba(0,229,255,0)');
-      ctx.beginPath(); ctx.arc(nx,ny,nr*3,0,Math.PI*2); ctx.fillStyle=ng; ctx.fill();
-    }
+    // Clean metal base
+    ctx.fillStyle = '#0a0d11'; 
+    ctx.fillRect(0,0,S,S);
+    
+    // Very subtle brushed lines
+    ctx.strokeStyle = '#1e242a'; ctx.lineWidth = 0.5; ctx.globalAlpha = 0.3;
+    for(let i=0; i<S; i+=4){ ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(S,i); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+
+    // Stylized V.I. Logo with glow
+    ctx.textAlign = 'center'; ctx.textBaseline='middle';
+    ctx.fillStyle = '#00e5ff'; ctx.font='bold 24px sans-serif'; 
+    ctx.fillText('V.I.', S/2, S/2);
+    ctx.font = '10px sans-serif'; ctx.fillStyle = 'rgba(0,229,255,.5)';
+    ctx.fillText('ACTIVE SCAN', S/2, S/2+30);
+    
+    // Central circle & glow
+    ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(S/2,S/2,S*.35,0,Math.PI*2); ctx.stroke();
+    const grd2 = ctx.createRadialGradient(S/2,S/2,0,S/2,S/2,S*.4);
+    grd2.addColorStop(0,'rgba(0,229,255,.1)'); grd2.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.beginPath(); ctx.arc(S/2,S/2,S*.4,0,Math.PI*2); ctx.fillStyle=grd2; ctx.fill();
+    
+  } else if(type==='metal'){
+    // Clean metal base
+    ctx.fillStyle = '#111316'; 
+    ctx.fillRect(0,0,S,S);
+    
+    // Very subtle vertical brushed lines
+    ctx.strokeStyle = '#22252a'; ctx.lineWidth = 0.5; ctx.globalAlpha = 0.3;
+    for(let i=0; i<S; i+=5){ ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,S); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+    
+    // Stylized central logo & text
+    ctx.textAlign = 'center'; ctx.textBaseline='middle';
+    ctx.fillStyle = '#ff8c42'; ctx.font='bold 28px sans-serif'; 
+    ctx.fillText('ERMA', S/2, S/2-10);
+    ctx.fillStyle = '#4a0000'; ctx.font='bold 20px sans-serif'; // smaller Concept
+    ctx.fillText('Concept', S/2, S/2+14);
+
+    // Subtle central glow & ring
+    const grd2 = ctx.createRadialGradient(S/2,S/2,0,S/2,S/2,S*.3);
+    grd2.addColorStop(0,'rgba(255,140,66,.2)'); grd2.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.beginPath(); ctx.arc(S/2,S/2,S*.3,0,Math.PI*2); ctx.fillStyle=grd2; ctx.fill();
+    
   } else {
     const grd=ctx.createRadialGradient(S*.37,S*.3,0,S*.5,S*.5,S*.62);
     grd.addColorStop(0,'#fff'); grd.addColorStop(.3,hex); grd.addColorStop(1,`rgba(${Math.round(r*.4)},${Math.round(g2*.2)},${Math.round(b*.3)},.8)`);
@@ -1014,44 +1013,25 @@ function mkTex(hex,type){
   return new THREE.CanvasTexture(c);
 }
 
-function makeTrailMat(color){
-  return new THREE.ShaderMaterial({
-    uniforms:{uAngle:{value:0}, uColor:{value:new THREE.Color(color)}},
-    vertexShader:`
-      uniform float uAngle;
-      varying float vFade;
-      void main(){
-        float a=atan(position.z, position.x);
-        float diff=mod(a - uAngle + 6.28318, 6.28318);
-        vFade=pow(1.0 - diff/6.28318, 2.8)*0.48;
-        gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);
-      }`,
-    fragmentShader:`
-      uniform vec3 uColor; varying float vFade;
-      void main(){ gl_FragColor=vec4(uColor, vFade); }`,
-    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending
-  });
-}
-
-function makeOrbitGeo(radius){
-  const N=200, pos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){
-    const a=(i/N)*Math.PI*2;
-    pos[i*3]=Math.cos(a)*radius; pos[i*3+1]=0; pos[i*3+2]=Math.sin(a)*radius;
-  }
-  const geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  return geo;
-}
+const curEl=document.getElementById('cur');
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{
+  curEl.style.left=e.clientX+'px'; curEl.style.top=e.clientY+'px';
+  mouse.x=(e.clientX/innerWidth)*2-1; mouse.y=-(e.clientY/innerHeight)*2+1;
+  tip.style.left=(e.clientX+22)+'px'; tip.style.top=(e.clientY-13)+'px';
+  const el=document.getElementById('ttr');
+  if(el)el.innerHTML=`CUR: ${String(e.clientX).padStart(4,'0')}, ${String(e.clientY).padStart(4,'0')}<br>SCAN: ACTIF<br>RENDERER: WEBGL2`;
+});
+cv.addEventListener('click',()=>{if(hovG)selP(hovG);else if(selG)closeP();});
 
 const pObjs=[];
 PL.forEach(d=>{
   const grp=new THREE.Group(); sc.add(grp);
-  const trailMat=makeTrailMat(d.color);
-  sc.add(new THREE.Line(makeOrbitGeo(d.r), trailMat));
+  sc.add(new THREE.Line(makeOrbitGeo(d.r), makeTrailMat(d.color)));
   const orb=new THREE.Mesh(new THREE.RingGeometry(d.r-.04,d.r+.04,128),
     new THREE.MeshBasicMaterial({color:0x00cfff,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
   orb.rotation.x=-Math.PI/2; sc.add(orb);
+  
   const mat=new THREE.MeshStandardMaterial({
     map:mkTex(d.hex,d.type), color:new THREE.Color(d.color),
     emissive:new THREE.Color(d.em), emissiveIntensity:.28,
@@ -1065,193 +1045,61 @@ PL.forEach(d=>{
       rm.rotation.x=Math.PI/2.7; mesh.add(rm);
     });
   }
-  const atmMat=new THREE.ShaderMaterial({
-    uniforms:{uC:{value:new THREE.Color(d.color)},uI:{value:.28}},
-    vertexShader:`
-      varying vec3 vN,vV;
-      void main(){
-        vN=normalize(normalMatrix*normal);
-        vec4 mv=modelViewMatrix*vec4(position,1.); vV=normalize(-mv.xyz);
-        gl_Position=projectionMatrix*mv;
-      }`,
-    fragmentShader:`
-      uniform vec3 uC; uniform float uI; varying vec3 vN,vV;
-      void main(){
-        float rim=pow(1.-abs(dot(vN,vV)),2.5);
-        gl_FragColor=vec4(uC*rim*uI, rim*.5);
-      }`,
-    transparent:true, depthWrite:false, side:THREE.FrontSide, blending:THREE.AdditiveBlending
-  });
-  const atm=new THREE.Mesh(new THREE.SphereGeometry(d.size*1.25,32,32),atmMat);
-  const pl=new THREE.PointLight(new THREE.Color(d.color),.12,d.size*5.5);
-  grp.add(mesh,atm,pl);
+  grp.add(mesh);
   grp.position.x=Math.cos(d.a)*d.r; grp.position.z=Math.sin(d.a)*d.r;
-  grp.userData={...d, ca:d.a, mesh, mat, atmMat, trailMat};
+  grp.userData={...d, ca:d.a, mesh, mat};
   pObjs.push(grp);
 });
 
 const navEl=document.getElementById('nav-btns');
 PL.forEach((p,i)=>{
-  const btn=document.createElement('button');
-  btn.className='navb'; btn.id='nd-'+p.id;
-  btn.style.setProperty('--nc',p.hex);
-  btn.innerHTML=`<div class="navb-bg"></div><span class="dot" style="background:${p.hex};box-shadow:0 0 5px ${p.hex}"></span>${p.name}`;
-  btn.addEventListener('click',()=>selP(pObjs[i]));
-  navEl.appendChild(btn);
+  const btn=document.createElement('button'); btn.className='navb'; btn.id='nd-'+p.id; btn.style.setProperty('--nc',p.hex); btn.innerHTML=`<div class="navb-bg"></div><span class="dot" style="background:${p.hex};box-shadow:0 0 5px ${p.hex}"></span>${p.name}`; btn.addEventListener('click',()=>selP(pObjs[i])); navEl.appendChild(btn);
 });
-
-let selG=null, hovG=null;
-const mouse=new THREE.Vector2(-99,-99), ray=new THREE.Raycaster();
-const cpx={x:0,y:25,z:48}, clkAt={x:0,y:0,z:0}, ctg={x:0,y:0,z:0};
-const lp=(a,b,t)=>a+(b-a)*t;
-
-function selP(g){
-  if(selG===g){closeP();return;}
-  closeP(false); selG=g;
-  const d=g.userData;
-  document.querySelectorAll('.navb').forEach(b=>b.classList.remove('on'));
-  document.getElementById('nd-'+d.id)?.classList.add('on');
-  pObjs.forEach(gg=>{if(gg!==g){gg.userData.mat.opacity=.12;gg.userData.mat.transparent=true;gg.userData.atmMat.uniforms.uI.value=.03;}});
-  d.mat.emissiveIntensity=1.5; d.atmMat.uniforms.uI.value=1.9;
-  const panel=document.getElementById('panel');
-  panel.style.setProperty('--pc',d.hex);
-  document.getElementById('ph-name').textContent=d.name;
-  document.getElementById('ph-sub').textContent=d.sub;
-  const orb=document.getElementById('ph-orb');
-  orb.style.background=`radial-gradient(circle at 34% 30%,#fff 0%,${d.hex} 32%,hsl(${new THREE.Color(d.em).getHSL({}).h*360|0},60%,15%) 100%)`;
-  orb.style.boxShadow=`0 0 12px ${d.hex},0 0 26px ${d.hex}44`;
-  document.getElementById('pb').innerHTML=d.html(d);
-  document.getElementById('pb').style.setProperty('--pc',d.hex);
-  setTimeout(()=>panel.classList.add('on'),30);
-  const ang=d.ca+Math.PI*.14, dist=d.size*8.;
-  ctg.x=g.position.x; ctg.z=g.position.z;
-  cpx.x=g.position.x+Math.cos(ang)*dist*.58;
-  cpx.z=g.position.z+Math.sin(ang)*dist*.84;
-  cpx.y=d.size*4.;
-}
-function closeP(rc=true){
-  document.getElementById('panel').classList.remove('on'); selG=null;
-  document.querySelectorAll('.navb').forEach(b=>b.classList.remove('on'));
-  pObjs.forEach(g=>{g.userData.mat.opacity=1;g.userData.mat.transparent=false;g.userData.mat.emissiveIntensity=.28;g.userData.atmMat.uniforms.uI.value=.28;});
-  if(rc){cpx.x=0;cpx.y=25;cpx.z=48;ctg.x=0;ctg.y=0;ctg.z=0;}
-}
-document.getElementById('pcls').addEventListener('click',closeP);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeP();});
-
-const curEl=document.getElementById('cur');
-const tip=document.getElementById('tip');
-document.addEventListener('mousemove',e=>{
-  curEl.style.left=e.clientX+'px'; curEl.style.top=e.clientY+'px';
-  mouse.x=(e.clientX/innerWidth)*2-1; mouse.y=-(e.clientY/innerHeight)*2+1;
-  tip.style.left=(e.clientX+22)+'px'; tip.style.top=(e.clientY-13)+'px';
-  const el=document.getElementById('ttr');
-  if(el)el.innerHTML=`CUR: ${String(e.clientX).padStart(4,'0')}, ${String(e.clientY).padStart(4,'0')}<br>SCAN: ACTIF<br>RENDERER: WEBGL2`;
-});
-cv.addEventListener('click',()=>{if(hovG)selP(hovG);else if(selG)closeP();});
 
 const clock=new THREE.Clock();
 let bloomFrame=0;
 function anim(){
   requestAnimationFrame(anim);
   const t=clock.getElapsedTime();
-
-  nebMesh.material.uniforms.uT.value=t;
-  starMat.uniforms.uT.value=t;
-  sunMat.uniforms.uT.value=t;
-  coronaMat.uniforms.uT.value=t;
-  coronaDiffuseMat.uniforms.uT.value=t;
-
-  coronaMesh.lookAt(cam.position);
-  coronaDiffuse.lookAt(cam.position);
-  sun.rotation.y+=.0012; sun.rotation.z+=.0004;
-  sl.intensity=4.5+Math.sin(t*1.7)*.9;
-  sl.color.setHSL(.062+Math.sin(t*.2)*.012, .92, .52);
-
-  updateProminences(t);
-
+  nebMesh.material.uniforms.uT.value=t; starMat.uniforms.uT.value=t; sunMat.uniforms.uT.value=t; coronaMat.uniforms.uT.value=t; coronaDiffuseMat.uniforms.uT.value=t;
+  coronaMesh.lookAt(cam.position); coronaDiffuse.lookAt(cam.position); sun.rotation.y+=.0012; sun.rotation.z+=.0004; sl.intensity=4.5+Math.sin(t*1.7)*.9; sl.color.setHSL(.062+Math.sin(t*.2)*.012, .92, .52); updateProminences(t);
   pObjs.forEach(g=>{
-    const d=g.userData;
-    d.ca+=d.sp*.016;
-    g.position.x=Math.cos(d.ca)*d.r;
-    g.position.z=Math.sin(d.ca)*d.r;
-    d.mesh.rotation.y+=d.rot;
-    if(d.trailMat)d.trailMat.uniforms.uAngle.value=d.ca;
+    const d=g.userData; d.ca+=d.sp*.016; g.position.x=Math.cos(d.ca)*d.r; g.position.z=Math.sin(d.ca)*d.r; d.mesh.rotation.y+=d.rot;
   });
-
   const dt=.016;
   shooters.forEach(s=>{
-    if(!s.active)return;
-    s.life+=dt;
-    if(s.life>s.maxLife){
-      s.active=false; s.mat.opacity=0;
-      s.pos.fill(0); s.geo.attributes.position.needsUpdate=true; return;
-    }
-    const prog=s.life/s.maxLife;
-    const fade=Math.sin(prog*Math.PI);
-    s.mat.opacity=fade*.55;
-    const spd=18;
-    const ex=s.x+s.dx*s.life*spd, ey=s.y+s.dy*s.life*spd, ez=s.z+s.dz*s.life*spd;
-    const tlen=3+prog*3;
-    s.pos[0]=ex-s.dx*tlen; s.pos[1]=ey-s.dy*tlen; s.pos[2]=ez-s.dz*tlen;
-    s.pos[3]=ex; s.pos[4]=ey; s.pos[5]=ez;
-    s.geo.attributes.position.needsUpdate=true;
+    if(!s.active)return; s.life+=dt; if(s.life>s.maxLife){s.active=false;s.mat.opacity=0;s.pos.fill(0);s.geo.attributes.position.needsUpdate=true;return;} const prog=s.life/s.maxLife; s.mat.opacity=Math.sin(prog*Math.PI)*.55; const spd=18; const ex=s.x+s.dx*s.life*spd, ey=s.y+s.dy*s.life*spd, ez=s.z+s.dz*s.life*spd; const tlen=3+prog*3; s.pos[0]=ex-s.dx*tlen; s.pos[1]=ey-s.dy*tlen; s.pos[2]=ez-s.dz*tlen; s.pos[3]=ex; s.pos[4]=ey; s.pos[5]=ez; s.geo.attributes.position.needsUpdate=true;
   });
+  ray.setFromCamera(mouse,cam); const meshes=pObjs.map(g=>g.userData.mesh); const hits=ray.intersectObjects(meshes,false); const nh=hits.length?pObjs[meshes.indexOf(hits[0].object)]:null; if(nh!==hovG){if(hovG&&hovG!==selG){hovG.userData.mat.emissiveIntensity=.28;} hovG=nh; if(hovG){document.body.classList.add('hov');tip.textContent=hovG.userData.name;tip.classList.add('on');if(hovG!==selG){hovG.userData.mat.emissiveIntensity=.88;}} else{document.body.classList.remove('hov');tip.classList.remove('on');}}
+  if(selG){const g=selG,d=g.userData,ang=d.ca+Math.PI*.14,dist=d.size*8.;ctg.x=lp(ctg.x,g.position.x,.05); ctg.z=lp(ctg.z,g.position.z,.05); cpx.x=lp(cpx.x,g.position.x+Math.cos(ang)*dist*.58,.027); cpx.z=lp(cpx.z,g.position.z+Math.sin(ang)*dist*.84,.027); cpx.y=lp(cpx.y,d.size*4.,.04);} else {cpx.y=25+Math.sin(t*.11)*1.3; cpx.x=Math.sin(t*.055)*1.6;} cam.position.x=lp(cam.position.x,cpx.x,.033); cam.position.y=lp(cam.position.y,cpx.y,.033); cam.position.z=lp(cam.position.z,cpx.z,.033); clkAt.x=lp(clkAt.x,ctg.x,.04); clkAt.y=lp(clkAt.y,ctg.y,.04); clkAt.z=lp(clkAt.z,ctg.z,.04); cam.lookAt(clkAt.x,clkAt.y,clkAt.z); ren.render(sc,cam); if(bloomFrame++%2===0) updateBloom();
+}
 
-  ray.setFromCamera(mouse,cam);
-  const meshes=pObjs.map(g=>g.userData.mesh);
-  const hits=ray.intersectObjects(meshes,false);
-  const nh=hits.length?pObjs[meshes.indexOf(hits[0].object)]:null;
-  if(nh!==hovG){
-    if(hovG&&hovG!==selG){hovG.userData.mat.emissiveIntensity=.28;hovG.userData.atmMat.uniforms.uI.value=.28;}
-    hovG=nh;
-    if(hovG){document.body.classList.add('hov');tip.textContent=hovG.userData.name;tip.classList.add('on');if(hovG!==selG){hovG.userData.mat.emissiveIntensity=.88;hovG.userData.atmMat.uniforms.uI.value=.95;}}
-    else{document.body.classList.remove('hov');tip.classList.remove('on');}
-  }
-
-  if(selG){
-    const g=selG,d=g.userData,ang=d.ca+Math.PI*.14,dist=d.size*8.;
-    ctg.x=lp(ctg.x,g.position.x,.05); ctg.z=lp(ctg.z,g.position.z,.05);
-    cpx.x=lp(cpx.x,g.position.x+Math.cos(ang)*dist*.58,.027);
-    cpx.z=lp(cpx.z,g.position.z+Math.sin(ang)*dist*.84,.027);
-    cpx.y=lp(cpx.y,d.size*4.,.04);
-  } else {
-    cpx.y=25+Math.sin(t*.11)*1.3; cpx.x=Math.sin(t*.055)*1.6;
-  }
-  cam.position.x=lp(cam.position.x,cpx.x,.033);
-  cam.position.y=lp(cam.position.y,cpx.y,.033);
-  cam.position.z=lp(cam.position.z,cpx.z,.033);
-  clkAt.x=lp(clkAt.x,ctg.x,.04); clkAt.y=lp(clkAt.y,ctg.y,.04); clkAt.z=lp(clkAt.z,ctg.z,.04);
-  cam.lookAt(clkAt.x,clkAt.y,clkAt.z);
-
-  ren.render(sc,cam);
-  if(bloomFrame++%2===0) updateBloom();
+function closeP(rc=true){
+  document.getElementById('panel').classList.remove('on'); selG=null;
+  document.querySelectorAll('.navb').forEach(b=>b.classList.remove('on'));
+  pObjs.forEach(g=>{g.userData.mat.opacity=1;g.userData.mat.transparent=false;g.userData.mat.emissiveIntensity=.28;});
+  if(rc){cpx.x=0;cpx.y=25;cpx.z=48;ctg.x=0;ctg.y=0;ctg.z=0;}
+}
+function selP(g){
+  if(selG===g){closeP();return;} closeP(false); selG=g; const d=g.userData; document.querySelectorAll('.navb').forEach(b=>b.classList.remove('on')); document.getElementById('nd-'+d.id)?.classList.add('on'); pObjs.forEach(gg=>{if(gg!==g){gg.userData.mat.opacity=.12;gg.userData.mat.transparent=true;}}); d.mat.emissiveIntensity=1.5; const panel=document.getElementById('panel'); panel.style.setProperty('--pc',d.hex); document.getElementById('ph-name').textContent=d.name; document.getElementById('ph-sub').textContent=d.sub; const orb=document.getElementById('ph-orb'); orb.style.background=`radial-gradient(circle at 34% 30%,#fff 0%,${d.hex} 32%,hsl(${new THREE.Color(d.em).getHSL({}).h*360|0},60%,15%) 100%)`; orb.style.boxShadow=`0 0 12px ${d.hex},0 0 26px ${d.hex}44`; document.getElementById('pb').innerHTML=d.html(d); document.getElementById('pb').style.setProperty('--pc',d.hex); setTimeout(()=>panel.classList.add('on'),30); const ang=d.ca+Math.PI*.14, dist=d.size*8.; ctg.x=g.position.x; ctg.z=g.position.z; cpx.x=g.position.x+Math.cos(ang)*dist*.58; cpx.z=g.position.z+Math.sin(ang)*dist*.84; cpx.y=d.size*4.;
 }
 
 window.addEventListener('resize',()=>{
-  cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix();
-  ren.setSize(innerWidth,innerHeight);
-  bloomCv.width=innerWidth; bloomCv.height=innerHeight;
+  cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix(); ren.setSize(innerWidth,innerHeight); bloomCv.width=innerWidth; bloomCv.height=innerHeight;
 });
 
-const LOGS=['MOTEUR WEBGL2: INITIALISÉ','SHADER FBM NÉBULEUSE: COMPILÉ','13 000 ÉTOILES GÉNÉRÉES','SOLEIL PLASMA: EN LIGNE','6 PLANÈTES DÉTECTÉES','TRAÎNÉES ORBITALES: ACTIVES','SYSTÈME PRÊT'];
-const llog=document.getElementById('llog');
-LOGS.forEach((l,i)=>setTimeout(()=>{
-  const el=document.createElement('div'); el.className='l-line'; el.textContent=l; llog.appendChild(el);
-  setTimeout(()=>el.classList.add('in'),20);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeP();}); document.getElementById('pcls').addEventListener('click',closeP);
+
+const ray=new THREE.Raycaster(); const mouse=new THREE.Vector2(-99,-99); const cpx={x:0,y:25,z:48}, clkAt={x:0,y:0,z:0}, ctg={x:0,y:0,z:0}; const lp=(a,b,t)=>a+(b-a)*t;
+
+const llog=document.getElementById('llog'); const LOGS=['MOTEUR WEBGL2: INITIALISÉ','SHADER FBM NÉBULEUSE: COMPILÉ','13 000 ÉTOILES GÉNÉRÉES','SOLEIL PLASMA: EN LIGNE','6 PLANÈTES DÉTECTÉES','TRAÎNÉES ORBITALES: ACTIVES','SYSTÈME PRÊT']; LOGS.forEach((l,i)=>setTimeout(()=>{
+  const el=document.createElement('div'); el.className='l-line'; el.textContent=l; llog.appendChild(el); setTimeout(()=>el.classList.add('in'),20);
 },180+i*185));
-let pct=0;
-const iv=setInterval(()=>{
-  pct+=Math.random()*11+3; if(pct>=100){pct=100;clearInterval(iv);}
-  document.getElementById('lfill').style.width=pct+'%';
-  document.getElementById('lpct').textContent=Math.round(pct)+'%';
+let pct=0; const iv=setInterval(()=>{
+  pct+=Math.random()*11+3; if(pct>=100){pct=100;clearInterval(iv);} document.getElementById('lfill').style.width=pct+'%'; document.getElementById('lpct').textContent=Math.round(pct)+'%';
 },88);
 setTimeout(()=>{
-  document.getElementById('loader').classList.add('out');
-  setTimeout(()=>{document.getElementById('loader').style.display='none';},1100);
-  document.querySelectorAll('.bc,.tl').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),80+i*75));
-  document.getElementById('banner').classList.add('vis');
-  document.getElementById('nav').classList.add('vis');
-  anim();
+  document.getElementById('loader').classList.add('out'); setTimeout(()=>{document.getElementById('loader').style.display='none';},1100); document.querySelectorAll('.bc,.tl').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),80+i*75)); document.getElementById('banner').classList.add('vis'); document.getElementById('nav').classList.add('vis'); anim();
 },2100);
 </script>
 </body>
