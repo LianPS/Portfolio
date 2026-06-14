@@ -16,14 +16,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--c0)}
 body{font-family:var(--fu);cursor:none}
 #c{position:fixed;inset:0;width:100%;height:100%}
 
-/* ── BLOOM OVERLAY (CSS blur sim) ── */
 #bloom{
   position:fixed;inset:0;pointer-events:none;z-index:2;
   mix-blend-mode:screen;
 }
 #bloom canvas{position:absolute;inset:0;width:100%;height:100%;filter:blur(18px)}
 
-/* ── CURSOR ── */
 #cur{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 #cur-dot{
   width:5px;height:5px;background:#fff;border-radius:50%;
@@ -42,7 +40,6 @@ body{font-family:var(--fu);cursor:none}
 body.hov #cur-dot{transform:translate(-50%,-50%) scale(0);opacity:0}
 body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 
-/* ── LOADER ── */
 #loader{
   position:fixed;inset:0;background:var(--c0);z-index:9000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -70,7 +67,6 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .l-line.in{opacity:1;transform:none}
 .l-line::before{content:'> ';color:var(--c1);opacity:.8}
 
-/* ── HUD ── */
 #hud{position:fixed;inset:0;pointer-events:none;z-index:20}
 #hud::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 78% 78% at 50% 50%,transparent 38%,rgba(1,9,18,.52) 100%);pointer-events:none}
 #hud::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,207,255,.008) 2px,rgba(0,207,255,.008) 3px);pointer-events:none}
@@ -96,7 +92,6 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .ban-name{font-family:var(--fd);font-size:clamp(11px,1.7vw,19px);font-weight:800;color:#fff;letter-spacing:10px;text-transform:uppercase;text-shadow:0 0 22px rgba(0,207,255,.5),0 0 44px rgba(0,207,255,.18)}
 .ban-sub{font-size:7.5px;letter-spacing:5px;color:rgba(0,207,255,.45);margin-top:4px}
 
-/* nav bar */
 #nav{
   position:absolute;bottom:0;left:50%;transform:translateX(-50%);
   width:min(880px,100vw);padding:0 22px 15px;
@@ -124,7 +119,6 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .navb:hover .dot,.navb.on .dot{transform:scale(1.7);animation:dotpls 1s ease-in-out infinite}
 @keyframes dotpls{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* ── INFO PANEL ── */
 #panel{
   position:fixed;top:50%;right:0;
   transform:translateY(-50%) translateX(105%);
@@ -165,42 +159,15 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .tags{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:7.5px;letter-spacing:1.8px;padding:4px 12px;border:1px solid rgba(0,207,255,.28);color:rgba(0,207,255,.78);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);text-transform:uppercase;background:rgba(0,207,255,.05)}
 
-/* ── TIMELINE ── */
 .tl2{display:flex;flex-direction:column}
 .ti{display:grid;grid-template-columns:72px 1fr;gap:0 12px;position:relative;padding-bottom:16px}
 .ti:last-child{padding-bottom:0}
 .ti:not(:last-child)::after{content:'';position:absolute;left:70px;top:16px;bottom:0;width:1px;background:linear-gradient(180deg,var(--pc,rgba(0,207,255,.4)),transparent)}
-/* date label */
-.ti-d{
-  font-size:7px;letter-spacing:1.5px;
-  color:var(--pc,rgba(0,207,255,.75));
-  padding-top:3px;text-align:right;line-height:1.7;
-  font-weight:600;opacity:.9
-}
-/* connector dot */
+.ti-d{font-size:7px;letter-spacing:1.5px;color:var(--pc,rgba(0,207,255,.75));padding-top:3px;text-align:right;line-height:1.7;font-weight:600;opacity:.9}
 .ti-dot{position:absolute;left:65px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--pc,rgba(0,207,255,.7));box-shadow:0 0 8px var(--pc,rgba(0,207,255,.7)),0 0 16px var(--pc,rgba(0,207,255,.3));z-index:1}
-/* title */
-.ti-t{
-  font-size:11px;letter-spacing:1px;
-  color:#fff;font-weight:700;line-height:1.4;
-  text-shadow:0 0 12px rgba(255,255,255,.12)
-}
-/* organization */
-.ti-o{
-  font-size:8.5px;color:rgba(170,210,240,.65);
-  letter-spacing:1px;margin-top:3px;font-style:normal
-}
-/* description */
-.ti-c{
-  font-size:10px;
-  color:rgba(200,225,245,.82);
-  margin-top:6px;line-height:1.85;
-  letter-spacing:.2px;
-  border-left:2px solid var(--pc,rgba(0,207,255,.3));
-  padding-left:10px;
-  background:rgba(0,207,255,.025);
-  padding-top:6px;padding-bottom:6px;padding-right:8px
-}
+.ti-t{font-size:11px;letter-spacing:1px;color:#fff;font-weight:700;line-height:1.4;text-shadow:0 0 12px rgba(255,255,255,.12)}
+.ti-o{font-size:8.5px;color:rgba(170,210,240,.65);letter-spacing:1px;margin-top:3px;font-style:normal}
+.ti-c{font-size:10px;color:rgba(200,225,245,.82);margin-top:6px;line-height:1.85;letter-spacing:.2px;border-left:2px solid var(--pc,rgba(0,207,255,.3));padding-left:10px;background:rgba(0,207,255,.025);padding-top:6px;padding-bottom:6px;padding-right:8px}
 
 .mets{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(0,207,255,.025);border:1px solid rgba(0,207,255,.1)}
 .met{padding:12px 6px;text-align:center;border-right:1px solid rgba(0,207,255,.08)}
@@ -230,7 +197,6 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 .btns{background:transparent;border-color:rgba(0,207,255,.18);color:rgba(0,207,255,.55)}
 .btns:hover{background:rgba(0,207,255,.06);color:#fff}
 
-/* tooltip */
 #tip{position:fixed;z-index:500;background:rgba(1,9,18,.96);border:1px solid rgba(0,207,255,.26);backdrop-filter:blur(12px);color:rgba(0,207,255,.88);font-size:7.5px;letter-spacing:3px;padding:5px 12px;clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);pointer-events:none;opacity:0;transition:opacity .12s;text-transform:uppercase;white-space:nowrap}
 #tip.on{opacity:1}
 </style>
@@ -238,7 +204,6 @@ body.hov #cur-ring{width:52px;height:52px;border-color:rgba(0,207,255,.9)}
 <body>
 
 <div id="cur"><div id="cur-dot"></div><div id="cur-ring"></div></div>
-
 <div id="bloom"><canvas id="bloom-cv"></canvas></div>
 
 <div id="loader">
@@ -476,12 +441,12 @@ const PL = [
   },
   {
     id:'erma', name:'ERMA CONCEPT', sub:'Alternance · Grésy-sur-Aix, Savoie',
-    color:0xff8c42, hex:'#ff8c42', em:0x5a1f00,
-    size:1.08, r:32, sp:.045, a:Math.PI*.65, rot:.008, type:'metal',
+    color:0xffffff, hex:'#ffffff', em:0x111111,
+    size:1.08, r:32, sp:.045, a:Math.PI*.65, rot:.008, type:'erma',
     html:d=>`
-      <div style="border:1px solid ${d.hex}30;background:${d.hex}08;padding:13px 14px;margin-bottom:0;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,${d.hex},transparent);opacity:.6"></div>
-        <div style="font-size:7px;letter-spacing:4px;color:${d.hex};opacity:.6;margin-bottom:4px">ENTREPRISE D'ACCUEIL — ALTERNANCE 2025</div>
+      <div style="border:1px solid #ff8c4230;background:#ff8c4208;padding:13px 14px;margin-bottom:0;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ff8c42,transparent);opacity:.6"></div>
+        <div style="font-size:7px;letter-spacing:4px;color:#ff8c42;opacity:.6;margin-bottom:4px">ENTREPRISE D'ACCUEIL — ALTERNANCE 2025</div>
         <div style="font-family:var(--fd);font-size:16px;font-weight:800;color:#fff;letter-spacing:3px">ERMA CONCEPT</div>
         <div style="font-size:8px;color:rgba(200,220,240,.55);letter-spacing:1.5px;margin-top:3px">Ingénierie · Automatisme industriel · Savoie</div>
       </div>
@@ -492,12 +457,12 @@ const PL = [
 
       <div><div class="sec">LOCALISATION</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <div class="card" style="border-color:${d.hex}28">
+        <div class="card" style="border-color:#ff8c4228">
           <div class="card-i">📍</div>
           <div class="card-t">SIÈGE</div>
           <div class="card-d">151 Imp. le Pré Mûrier<br>73100 Grésy-sur-Aix<br>Savoie, France</div>
         </div>
-        <div class="card" style="border-color:${d.hex}28">
+        <div class="card" style="border-color:#ff8c4228">
           <div class="card-i">🌍</div>
           <div class="card-t">INTERNATIONAL</div>
           <div class="card-d">Antenne à Mexico City<br>95%+ export<br>CA : ~8M€</div>
@@ -505,11 +470,11 @@ const PL = [
       </div></div>
 
       <div><div class="sec">MES MISSIONS EN ALTERNANCE</div>
-      <div class="tl2" style="--pc:${d.hex}">
+      <div class="tl2" style="--pc:#ff8c42">
 
         <div class="ti">
           <div class="ti-d">Mission 1</div>
-          <div class="ti-dot" style="background:${d.hex};box-shadow:0 0 8px ${d.hex}"></div>
+          <div class="ti-dot" style="background:#ff8c42;box-shadow:0 0 8px #ff8c42"></div>
           <div>
             <div class="ti-t">Gestion du Parc Informatique</div>
             <div class="ti-c">Inventaire, suivi et maintenance du matériel. Gestion du cycle de vie des équipements (PC, périphériques, imprimantes). Diagnostic de pannes hardware et software, interventions correctives.</div>
@@ -554,7 +519,7 @@ const PL = [
         <div class="met"><span class="mv">1999</span><span class="ml">FONDÉE EN</span></div>
       </div>
       <div class="cta">
-        <a href="https://ermaconcept.com" target="_blank" class="btn btnp">🌐 SITE WEB</a>
+        <a href="https://ermaconcept.com" target="_blank" class="btn btnp" style="background:#ff8c42;border-color:#ff8c42;">🌐 SITE WEB</a>
         <a href="https://www.google.com/maps/search/Grésy-sur-Aix+73100" target="_blank" class="btn btns">📍 LOCALISATION</a>
       </div>`
   },
@@ -572,7 +537,6 @@ const PL = [
 
       <div style="padding-top:5px;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:${d.hex};letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 1 : L'optimisation pour l'exécution IA en local</div>
-
         <p class="desc" style="margin-bottom:12px;">L'exécution d'un modèle d'inférence en local garantit la souveraineté des données et supprime la latence réseau. Les <strong>LLM (Large Language Models)</strong> classiques étant trop lourds, l'industrie développe des <strong>SLM (Small Language Models)</strong> et des solutions algorithmiques pour réduire drastiquement l'empreinte matérielle.</p>
 
         <div style="border:1px solid ${d.hex}25;background:${d.hex}05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
@@ -603,7 +567,6 @@ const PL = [
 
       <div style="padding-top:15px; border-top:1px dashed #f472b640;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#f472b6;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 2 : Cryptographie Post-Quantique (PQC)</div>
-
         <p class="desc" style="margin-bottom:12px;">D'ici 2030, la puissance de calcul des ordinateurs quantiques compromettra les algorithmes de chiffrement asymétrique standards. La transition vers la <strong style="color:#f472b6">Cryptographie Post-Quantique (PQC)</strong> est une directive prioritaire pour sécuriser les systèmes d'information.</p>
 
         <div style="border:1px solid #f472b625;background:#f472b605;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
@@ -651,9 +614,6 @@ const PL = [
   }
 ];
 
-// ═══════════════════════════════════════════════════════
-// THREE.JS SETUP
-// ═══════════════════════════════════════════════════════
 const cv = document.getElementById('c');
 const ren = new THREE.WebGLRenderer({canvas:cv, antialias:true, powerPreference:'high-performance'});
 ren.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -669,7 +629,6 @@ const cam = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, .1, 900);
 cam.position.set(0, 25, 48);
 cam.lookAt(0, 0, 0);
 
-// ── NEBULA SKYBOX ──
 const nebMesh = new THREE.Mesh(new THREE.SphereGeometry(480, 32, 32),
   new THREE.ShaderMaterial({
     uniforms:{uT:{value:0}},
@@ -696,7 +655,6 @@ const nebMesh = new THREE.Mesh(new THREE.SphereGeometry(480, 32, 32),
 );
 sc.add(nebMesh);
 
-// ── STARS ──
 const starMat = (()=>{
   const N=13000, p=new Float32Array(N*3), s=new Float32Array(N), b=new Float32Array(N);
   for(let i=0;i<N;i++){
@@ -734,8 +692,6 @@ const starMat = (()=>{
   return mat;
 })();
 
-// ── SHOOTING STARS ──
-// Each shooting star is its own line with its own material to avoid shared-opacity bug
 const NSHOOT = 5;
 const shooters = Array.from({length:NSHOOT}, ()=>{
   const geo = new THREE.BufferGeometry();
@@ -759,7 +715,6 @@ function spawnShoot(){
 }
 setInterval(spawnShoot, 2000);
 
-// ── ASTEROID BELT ──
 {
   const N=620, p=new Float32Array(N*3), s=new Float32Array(N);
   for(let i=0;i<N;i++){
@@ -788,11 +743,6 @@ setInterval(spawnShoot, 2000);
   })));
 }
 
-// ═══════════════════════════════════════════════════════
-// SUN — Full FBM Plasma + Prominences + Corona
-// ═══════════════════════════════════════════════════════
-
-// Main plasma ball with FBM
 const sunMat = new THREE.ShaderMaterial({
   uniforms:{
     uT:{value:0},
@@ -828,29 +778,20 @@ const sunMat = new THREE.ShaderMaterial({
     }
     float fbm(vec3 p){float v=0.;float a=.5;for(int i=0;i<5;i++){v+=a*sn(p);p=p*2.1+vec3(1.7,9.2,4.3);a*=.48;}return v;}
     void main(){
-      // plasma surface
       float f1=fbm(vP*3.5+uT*.22);
       float f2=fbm(vP*6.+uT*.14+vec3(f1));
       float f3=fbm(vP*2.2-uT*.08+vec3(f2*.5));
       float plasma=f1*.4+f2*.35+f3*.25;
-      
-      // hot spots
       float spots=fbm(vP*8.+uT*.35);
       float hotspot=smoothstep(.62,.85,spots);
-      
       vec3 col=mix(uC1,uC2,plasma);
       col=mix(col,uC3,pow(plasma,1.4));
       col=mix(col,uC4,hotspot*.6);
-      
-      // limb brightening
       float vdot=abs(dot(vN,normalize(-vP)));
       float limb=pow(1.-vdot,1.4);
       col+=uC2*limb*.8;
-      
-      // surface granules
       float gran=fbm(vP*14.+uT*.5);
       col+=vec3(.4,.2,.0)*gran*.15;
-      
       gl_FragColor=vec4(col,1.);
     }`,
   side: THREE.FrontSide,
@@ -858,7 +799,6 @@ const sunMat = new THREE.ShaderMaterial({
 const sun = new THREE.Mesh(new THREE.SphereGeometry(3.1, 128, 64), sunMat);
 sc.add(sun);
 
-// Corona — radial rays (billboard plane)
 const coronaMat = new THREE.ShaderMaterial({
   uniforms:{uT:{value:0}},
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
@@ -884,7 +824,6 @@ const coronaMat = new THREE.ShaderMaterial({
 const coronaMesh = new THREE.Mesh(new THREE.PlaneGeometry(28, 28), coronaMat);
 sc.add(coronaMesh);
 
-// Outer diffuse glow
 const coronaDiffuseMat = new THREE.ShaderMaterial({
   uniforms:{uT:{value:0}},
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
@@ -902,7 +841,6 @@ const coronaDiffuseMat = new THREE.ShaderMaterial({
 const coronaDiffuse = new THREE.Mesh(new THREE.PlaneGeometry(38, 38), coronaDiffuseMat);
 sc.add(coronaDiffuse);
 
-// Solar prominences — animated bezier-like arcs
 const NPROM = 8;
 const promGroups = [];
 for(let i=0;i<NPROM;i++){
@@ -928,15 +866,13 @@ function updateProminences(t){
     const h = p.height * (.7+.3*Math.sin(t*p.speed+p.phase));
     const w = p.width;
     const N = 32;
-    const r0 = 3.1; // sun radius
-    // arc from surface: bezier-like with control point
+    const r0 = 3.1;
     const cx = Math.cos(a), cz = Math.sin(a);
     const px = Math.cos(a+w), pz = Math.sin(a+w);
     const ex = Math.cos(a+w*2), ez = Math.sin(a+w*2);
     for(let j=0;j<N;j++){
       const t2=j/(N-1);
       const t2i=1-t2;
-      // quadratic bezier
       const bx=t2i*t2i*(r0*cx) + 2*t2i*t2*((r0+h)*px) + t2*t2*(r0*ex);
       const bz=t2i*t2i*(r0*cz) + 2*t2i*t2*((r0+h)*pz) + t2*t2*(r0*ez);
       const by=Math.sin(t2*Math.PI)*(h*.4)*Math.sin(t*p.speed*.7+p.phase);
@@ -947,7 +883,6 @@ function updateProminences(t){
   });
 }
 
-// Inner glows (sphere shells)
 [[3.5,.09,0xff5500],[4.8,.045,0xff3300],[7.,.02,0xff2000],[11.,.009,0xff1500]].forEach(([s,op,col])=>{
   sc.add(new THREE.Mesh(new THREE.SphereGeometry(s,24,24),
     new THREE.MeshBasicMaterial({color:new THREE.Color(col),transparent:true,opacity:op,side:THREE.BackSide,depthWrite:false,blending:THREE.AdditiveBlending})));
@@ -957,7 +892,6 @@ const sl = new THREE.PointLight(0xffaa44, 4.8, 105);
 sc.add(sl);
 sc.add(new THREE.AmbientLight(0x0a1828, .88));
 
-// ── BLOOM CANVAS SETUP ──
 const bloomCv = document.getElementById('bloom-cv');
 bloomCv.width = innerWidth; bloomCv.height = innerHeight;
 const bloomCtx = bloomCv.getContext('2d');
@@ -965,7 +899,6 @@ const bloomCtx = bloomCv.getContext('2d');
 function updateBloom(){
   bloomCv.width = innerWidth; bloomCv.height = innerHeight;
   bloomCtx.clearRect(0,0,innerWidth,innerHeight);
-  // Project sun to screen
   const sunPos = new THREE.Vector3();
   sun.getWorldPosition(sunPos);
   const sunScreen = sunPos.project(cam);
@@ -979,7 +912,6 @@ function updateBloom(){
     grd.addColorStop(1,'rgba(0,0,0,0)');
     bloomCtx.fillStyle=grd;
     bloomCtx.fillRect(0,0,innerWidth,innerHeight);
-    // lens flare rings
     [1,.6,.4,.25].forEach((sc2,i)=>{
       const rr=22+i*18;
       bloomCtx.beginPath();
@@ -991,7 +923,6 @@ function updateBloom(){
   }
 }
 
-// ── PLANET TEXTURE GENERATOR ──
 function mkTex(hex,type){
   const S=256, c=document.createElement('canvas'); c.width=c.height=S;
   const ctx=c.getContext('2d');
@@ -1006,6 +937,23 @@ function mkTex(hex,type){
     ctx.save(); ctx.globalAlpha=.2; ctx.strokeStyle='rgba(255,255,255,.9)'; ctx.lineWidth=2;
     for(let i=0;i<2;i++){ctx.beginPath();ctx.ellipse(S*.44,S*(.27+i*.19),S*.31,S*.054,-.22,0,Math.PI*2);ctx.stroke();}
     ctx.restore();
+  } else if(type==='erma'){
+    ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,S,S);
+    for(let i=0;i<150;i++){
+      const cx=Math.random()*S,cy=Math.random()*S,cr=Math.random()*8+1;
+      const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      grd.addColorStop(0,`rgba(0,0,0,${Math.random()*.08})`); grd.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2); ctx.fillStyle=grd; ctx.fill();
+    }
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    for(let y=S*.25; y<S; y+=S*.5){
+      for(let x=S*.25; x<=S*1.25; x+=S*.5){
+        ctx.fillStyle='#ff8c42'; ctx.font='bold 28px sans-serif';
+        ctx.fillText('ERMA', x, y-12);
+        ctx.fillStyle='#333333'; ctx.font='bold 18px sans-serif';
+        ctx.fillText('CONCEPT', x, y+12);
+      }
+    }
   } else if(type==='rocky'||type==='surface'){
     ctx.fillStyle=hex; ctx.fillRect(0,0,S,S);
     for(let i=0;i<300;i++){
@@ -1029,9 +977,7 @@ function mkTex(hex,type){
     ctx.strokeStyle='rgba(255,255,255,.1)'; ctx.lineWidth=.6;
     for(let i=0;i<S;i+=15){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,S);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(S,i);ctx.stroke();}
   } else if(type==='scanner'){
-    // Tech/scan surface — dark with cyan grid and data pulses
     ctx.fillStyle='#010c14'; ctx.fillRect(0,0,S,S);
-    // hex grid
     ctx.strokeStyle='rgba(0,229,255,.18)'; ctx.lineWidth=.7;
     for(let y=0;y<S;y+=18){
       for(let x=0;x<S;x+=21){
@@ -1044,7 +990,6 @@ function mkTex(hex,type){
         ctx.closePath(); ctx.stroke();
       }
     }
-    // scan pulse rings
     for(let i=0;i<4;i++){
       const cx=S/2, cy=S/2, r=30+i*38;
       const grd=ctx.createRadialGradient(cx,cy,r-4,cx,cy,r+4);
@@ -1054,43 +999,12 @@ function mkTex(hex,type){
       ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
       ctx.strokeStyle=grd; ctx.lineWidth=4; ctx.stroke();
     }
-    // bright data nodes
     for(let i=0;i<18;i++){
       const nx=Math.random()*S, ny=Math.random()*S, nr=Math.random()*4+1;
       const ng=ctx.createRadialGradient(nx,ny,0,nx,ny,nr*3);
       ng.addColorStop(0,'rgba(0,229,255,.9)'); ng.addColorStop(1,'rgba(0,229,255,0)');
       ctx.beginPath(); ctx.arc(nx,ny,nr*3,0,Math.PI*2); ctx.fillStyle=ng; ctx.fill();
     }
-  } else if(type==='metal'){
-    // Industrial/metallic: dark base with orange hot-metal veins
-    const grd=ctx.createRadialGradient(S*.42,S*.38,0,S*.5,S*.5,S*.6);
-    grd.addColorStop(0,'#2a1200'); grd.addColorStop(.4,`#${Math.round(r*.6).toString(16).padStart(2,'0')}${Math.round(g2*.35).toString(16).padStart(2,'0')}00`); grd.addColorStop(1,'#120800');
-    ctx.fillStyle=grd; ctx.fillRect(0,0,S,S);
-    // hot metal veins
-    for(let i=0;i<18;i++){
-      const x1=Math.random()*S,y1=Math.random()*S,x2=Math.random()*S,y2=Math.random()*S;
-      const gv=ctx.createLinearGradient(x1,y1,x2,y2);
-      gv.addColorStop(0,'rgba(0,0,0,0)');
-      gv.addColorStop(.5,`rgba(${r},${Math.round(g2*.6)},0,${Math.random()*.35+.1})`);
-      gv.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.strokeStyle=gv; ctx.lineWidth=Math.random()*3+1;
-      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-    }
-    // hot spots / embers
-    for(let i=0;i<60;i++){
-      const cx=Math.random()*S,cy=Math.random()*S,cr=Math.random()*5+.5;
-      const gs=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
-      gs.addColorStop(0,`rgba(255,${Math.round(Math.random()*120)},0,${Math.random()*.5+.2})`);
-      gs.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2); ctx.fillStyle=gs; ctx.fill();
-    }
-    // surface scratches
-    ctx.globalAlpha=.08; ctx.strokeStyle='rgba(255,180,80,.8)'; ctx.lineWidth=.5;
-    for(let i=0;i<30;i++){
-      const x=Math.random()*S,y=Math.random()*S,len=Math.random()*40+10,ang=Math.random()*Math.PI;
-      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ang)*len,y+Math.sin(ang)*len); ctx.stroke();
-    }
-    ctx.globalAlpha=1;
   } else {
     const grd=ctx.createRadialGradient(S*.37,S*.3,0,S*.5,S*.5,S*.62);
     grd.addColorStop(0,'#fff'); grd.addColorStop(.3,hex); grd.addColorStop(1,`rgba(${Math.round(r*.4)},${Math.round(g2*.2)},${Math.round(b*.3)},.8)`);
@@ -1100,7 +1014,6 @@ function mkTex(hex,type){
   return new THREE.CanvasTexture(c);
 }
 
-// ── ORBIT TRAIL ──
 function makeTrailMat(color){
   return new THREE.ShaderMaterial({
     uniforms:{uAngle:{value:0}, uColor:{value:new THREE.Color(color)}},
@@ -1131,27 +1044,20 @@ function makeOrbitGeo(radius){
   return geo;
 }
 
-// ── BUILD PLANETS ──
 const pObjs=[];
 PL.forEach(d=>{
   const grp=new THREE.Group(); sc.add(grp);
-
-  // orbit trail
   const trailMat=makeTrailMat(d.color);
   sc.add(new THREE.Line(makeOrbitGeo(d.r), trailMat));
-
-  // subtle orbit ring
   const orb=new THREE.Mesh(new THREE.RingGeometry(d.r-.04,d.r+.04,128),
     new THREE.MeshBasicMaterial({color:0x00cfff,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
   orb.rotation.x=-Math.PI/2; sc.add(orb);
-
   const mat=new THREE.MeshStandardMaterial({
     map:mkTex(d.hex,d.type), color:new THREE.Color(d.color),
     emissive:new THREE.Color(d.em), emissiveIntensity:.28,
     roughness:.62, metalness:.1
   });
   const mesh=new THREE.Mesh(new THREE.SphereGeometry(d.size,56,56),mat);
-
   if(d.hasRing){
     [[d.size*1.5,d.size*2.05,.55,0xd4b87a],[d.size*2.1,d.size*2.65,.22,0xa89055]].forEach(([ri,ro,op,col])=>{
       const rm=new THREE.Mesh(new THREE.RingGeometry(ri,ro,64),
@@ -1159,7 +1065,6 @@ PL.forEach(d=>{
       rm.rotation.x=Math.PI/2.7; mesh.add(rm);
     });
   }
-
   const atmMat=new THREE.ShaderMaterial({
     uniforms:{uC:{value:new THREE.Color(d.color)},uI:{value:.28}},
     vertexShader:`
@@ -1178,7 +1083,6 @@ PL.forEach(d=>{
     transparent:true, depthWrite:false, side:THREE.FrontSide, blending:THREE.AdditiveBlending
   });
   const atm=new THREE.Mesh(new THREE.SphereGeometry(d.size*1.25,32,32),atmMat);
-
   const pl=new THREE.PointLight(new THREE.Color(d.color),.12,d.size*5.5);
   grp.add(mesh,atm,pl);
   grp.position.x=Math.cos(d.a)*d.r; grp.position.z=Math.sin(d.a)*d.r;
@@ -1186,7 +1090,6 @@ PL.forEach(d=>{
   pObjs.push(grp);
 });
 
-// ── NAV ──
 const navEl=document.getElementById('nav-btns');
 PL.forEach((p,i)=>{
   const btn=document.createElement('button');
@@ -1197,7 +1100,6 @@ PL.forEach((p,i)=>{
   navEl.appendChild(btn);
 });
 
-// ── INTERACTION ──
 let selG=null, hovG=null;
 const mouse=new THREE.Vector2(-99,-99), ray=new THREE.Raycaster();
 const cpx={x:0,y:25,z:48}, clkAt={x:0,y:0,z:0}, ctg={x:0,y:0,z:0};
@@ -1236,7 +1138,6 @@ function closeP(rc=true){
 document.getElementById('pcls').addEventListener('click',closeP);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeP();});
 
-// ── CURSOR & TOOLTIP ──
 const curEl=document.getElementById('cur');
 const tip=document.getElementById('tip');
 document.addEventListener('mousemove',e=>{
@@ -1248,7 +1149,6 @@ document.addEventListener('mousemove',e=>{
 });
 cv.addEventListener('click',()=>{if(hovG)selP(hovG);else if(selG)closeP();});
 
-// ── MAIN LOOP ──
 const clock=new THREE.Clock();
 let bloomFrame=0;
 function anim(){
@@ -1261,7 +1161,6 @@ function anim(){
   coronaMat.uniforms.uT.value=t;
   coronaDiffuseMat.uniforms.uT.value=t;
 
-  // sun billboard
   coronaMesh.lookAt(cam.position);
   coronaDiffuse.lookAt(cam.position);
   sun.rotation.y+=.0012; sun.rotation.z+=.0004;
@@ -1270,7 +1169,6 @@ function anim(){
 
   updateProminences(t);
 
-  // orbit planets
   pObjs.forEach(g=>{
     const d=g.userData;
     d.ca+=d.sp*.016;
@@ -1280,7 +1178,6 @@ function anim(){
     if(d.trailMat)d.trailMat.uniforms.uAngle.value=d.ca;
   });
 
-  // shooting stars — each with own material
   const dt=.016;
   shooters.forEach(s=>{
     if(!s.active)return;
@@ -1300,7 +1197,6 @@ function anim(){
     s.geo.attributes.position.needsUpdate=true;
   });
 
-  // hover
   ray.setFromCamera(mouse,cam);
   const meshes=pObjs.map(g=>g.userData.mesh);
   const hits=ray.intersectObjects(meshes,false);
@@ -1312,7 +1208,6 @@ function anim(){
     else{document.body.classList.remove('hov');tip.classList.remove('on');}
   }
 
-  // camera
   if(selG){
     const g=selG,d=g.userData,ang=d.ca+Math.PI*.14,dist=d.size*8.;
     ctg.x=lp(ctg.x,g.position.x,.05); ctg.z=lp(ctg.z,g.position.z,.05);
@@ -1329,8 +1224,6 @@ function anim(){
   cam.lookAt(clkAt.x,clkAt.y,clkAt.z);
 
   ren.render(sc,cam);
-
-  // Bloom update every 2 frames
   if(bloomFrame++%2===0) updateBloom();
 }
 
@@ -1340,7 +1233,6 @@ window.addEventListener('resize',()=>{
   bloomCv.width=innerWidth; bloomCv.height=innerHeight;
 });
 
-// ── BOOT ──
 const LOGS=['MOTEUR WEBGL2: INITIALISÉ','SHADER FBM NÉBULEUSE: COMPILÉ','13 000 ÉTOILES GÉNÉRÉES','SOLEIL PLASMA: EN LIGNE','6 PLANÈTES DÉTECTÉES','TRAÎNÉES ORBITALES: ACTIVES','SYSTÈME PRÊT'];
 const llog=document.getElementById('llog');
 LOGS.forEach((l,i)=>setTimeout(()=>{
