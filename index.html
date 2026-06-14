@@ -327,33 +327,25 @@ function mkTex(hex, type){
       ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.025})`;
       ctx.beginPath(); ctx.arc(Math.random()*S, Math.random()*S, Math.random()*15+2, 0, Math.PI*2); ctx.fill();
     }
-    
-    const rawSvg = `<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="402.000000pt" height="180.000000pt" viewBox="0 0 402.000000 180.000000" preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-<path d="M0 900 l0 -900 2010 0 2010 0 0 900 0 900 -2010 0 -2010 0 0 -900z"/>
-</g>
-</svg>`;
 
     const img = new Image();
+    img.crossOrigin = "Anonymous"; // Obligatoire pour charger l'URL dans WebGL
     img.onload = () => {
       ctx.fillStyle='#f5f6f8'; ctx.fillRect(0,0,S,S);
       for(let i=0;i<600;i++){
         ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.025})`;
         ctx.beginPath(); ctx.arc(Math.random()*S, Math.random()*S, Math.random()*15+2, 0, Math.PI*2); ctx.fill();
       }
-      let aspect = 0.3;
-      if (img.naturalWidth && img.naturalWidth > 0) {
-        aspect = img.naturalHeight / img.naturalWidth;
-      }
-      let w = S * 0.35; 
+      
+      let aspect = img.naturalHeight / img.naturalWidth;
+      let w = S * 0.45;
       let h = w * aspect;
+      
       ctx.drawImage(img, S*0.25 - w/2, S/2 - h/2, w, h);
       ctx.drawImage(img, S*0.75 - w/2, S/2 - h/2, w, h);
       tex.needsUpdate = true;
     };
-    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(rawSvg);
+    img.src = 'https://imgs.search.brave.com/2vJlfiteD12DPwiW24Nuf9tVyeU492pGDTbeRnvhKBE/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lcm1h/Y29uY2VwdC5jb20v/YXBwL3VwbG9hZHMv/MjAyMS8wNC9sb2dv/LWVybWFjb25jZXB0/LnBuZw';
 
   } else if(type==='rocky'||type==='surface'){
     ctx.fillStyle=hex; ctx.fillRect(0,0,S,S);
@@ -962,7 +954,6 @@ const sunMat = new THREE.ShaderMaterial({
 const sun = new THREE.Mesh(new THREE.SphereGeometry(3.1, 128, 64), sunMat);
 sc.add(sun);
 
-// Corona
 const coronaMat = new THREE.ShaderMaterial({
   uniforms:{uT:{value:0}},
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
@@ -988,7 +979,6 @@ const coronaMat = new THREE.ShaderMaterial({
 const coronaMesh = new THREE.Mesh(new THREE.PlaneGeometry(28, 28), coronaMat);
 sc.add(coronaMesh);
 
-// Diffuse glow
 const coronaDiffuseMat = new THREE.ShaderMaterial({
   uniforms:{uT:{value:0}},
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, side:THREE.DoubleSide,
@@ -1006,7 +996,6 @@ const coronaDiffuseMat = new THREE.ShaderMaterial({
 const coronaDiffuse = new THREE.Mesh(new THREE.PlaneGeometry(38, 38), coronaDiffuseMat);
 sc.add(coronaDiffuse);
 
-// Prominences
 const NPROM = 8;
 const promGroups = [];
 for(let i=0;i<NPROM;i++){
@@ -1049,7 +1038,6 @@ function updateProminences(t){
   });
 }
 
-// Inner glows
 [[3.5,.09,0xff5500],[4.8,.045,0xff3300],[7.,.02,0xff2000],[11.,.009,0xff1500]].forEach(([s,op,col])=>{
   sc.add(new THREE.Mesh(new THREE.SphereGeometry(s,24,24),
     new THREE.MeshBasicMaterial({color:new THREE.Color(col),transparent:true,opacity:op,side:THREE.BackSide,depthWrite:false,blending:THREE.AdditiveBlending})));
@@ -1059,7 +1047,6 @@ const sl = new THREE.PointLight(0xffaa44, 4.8, 105);
 sc.add(sl);
 sc.add(new THREE.AmbientLight(0x0a1828, .88));
 
-// ── BLOOM CANVAS SETUP ──
 const bloomCv = document.getElementById('bloom-cv');
 bloomCv.width = innerWidth; bloomCv.height = innerHeight;
 const bloomCtx = bloomCv.getContext('2d');
@@ -1198,6 +1185,7 @@ function anim(){
   coronaMat.uniforms.uT.value=t;
   coronaDiffuseMat.uniforms.uT.value=t;
 
+  // sun billboard
   coronaMesh.lookAt(cam.position);
   coronaDiffuse.lookAt(cam.position);
   sun.rotation.y+=.0012; sun.rotation.z+=.0004;
@@ -1206,6 +1194,7 @@ function anim(){
 
   updateProminences(t);
 
+  // orbit planets
   pObjs.forEach(g=>{
     const d=g.userData;
     d.ca+=d.sp*.016;
@@ -1215,6 +1204,7 @@ function anim(){
     if(d.trailMat)d.trailMat.uniforms.uAngle.value=d.ca;
   });
 
+  // shooting stars
   const dt=.016;
   shooters.forEach(s=>{
     if(!s.active)return;
@@ -1234,6 +1224,7 @@ function anim(){
     s.geo.attributes.position.needsUpdate=true;
   });
 
+  // hover
   ray.setFromCamera(mouse,cam);
   const meshes=pObjs.map(g=>g.userData.mesh);
   const hits=ray.intersectObjects(meshes,false);
@@ -1245,6 +1236,7 @@ function anim(){
     else{document.body.classList.remove('hov');tip.classList.remove('on');}
   }
 
+  // camera
   if(selG){
     const g=selG,d=g.userData,ang=d.ca+Math.PI*.14,dist=d.size*8.;
     ctg.x=lp(ctg.x,g.position.x,.05); ctg.z=lp(ctg.z,g.position.z,.05);
