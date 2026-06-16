@@ -560,7 +560,7 @@ const PL = [
     html:d=>`
       <p class="desc">Au-delà du cursus, j'aime <strong>comprendre comment les choses fonctionnent</strong> — algorithmes d'IA, consoles de jeu, circuits électroniques. Créer, démonter, reconstruire.</p>
       <div class="cards">
-        <div class="card"><div class="card-i">🖨️</div><div class="card-t">IMPRESSION 3D</div><div class="card-d">Modélisation et fabrication d'objects physiques depuis le numérique.</div></div>
+        <div class="card"><div class="card-i">🖨️</div><div class="card-t">IMPRESSION 3D</div><div class="card-d">Modélisation et fabrication d'objets physiques depuis le numérique.</div></div>
         <div class="card"><div class="card-i">🎮</div><div class="card-t">GAMING & HARDWARE</div><div class="card-d">Consoles DIY, composants PC, architecture matérielle.</div></div>
         <div class="card"><div class="card-i">⚡</div><div class="card-t">ÉLECTRONIQUE DIY</div><div class="card-d">Montage de circuits, modification et création d'objets.</div></div>
         <div class="card"><div class="card-i">🤖</div><div class="card-t">INTELLIGENCE ARTIF.</div><div class="card-d">LLMs, raisonnement machine, apprentissage profond.</div></div>
@@ -683,7 +683,7 @@ const PL = [
       </div>`
   },
   {
-    id:'veille', name:'VEILLE INFORMATIQUE', sub:"SLM / IA Locale & Cryptographie PQC",
+    id:'veille', name:'VEILLE INFORMATIQUE', sub:"IA Locale · PQC · Green IT",
     color:0x00e5ff, hex:'#00e5ff', em:0x002f3a,
     size:1.15, r:36.5, sp:.035, a:Math.PI*.3, rot:.006, type:'scanner',
     html:d=>`
@@ -691,12 +691,12 @@ const PL = [
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,${d.hex},transparent);opacity:.6"></div>
         <div style="font-size:7px;letter-spacing:4px;color:${d.hex};opacity:.6;margin-bottom:3px;text-transform:uppercase">Épreuve E5 · BTS SIO SLAM · 2025–2026</div>
         <div style="font-family:var(--fd);font-size:15px;font-weight:800;color:#fff;letter-spacing:2px">VEILLE TECHNOLOGIQUE</div>
-        <div style="font-size:8.5px;color:rgba(200,240,255,.55);letter-spacing:1.5px;margin-top:2px">Thèmes : Exécution IA Locale & Cryptographie PQC</div>
+        <div style="font-size:8.5px;color:rgba(200,240,255,.55);letter-spacing:1.5px;margin-top:2px">Thèmes : IA Locale, Cryptographie PQC & Éco-conception</div>
       </div>
 
       <div style="padding-top:5px;">
         <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:${d.hex};letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 1 : L'optimisation pour l'exécution IA en local</div>
-        <p class="desc" style="margin-bottom:12px;">L'exécution locale d'une IA garantit la confidentialité des données et supprime la dépendance au Cloud. Le défi technique majeur réside dans la gestion de la mémoire et la bande passante VRAM nécessaire. Un LLM n'est informatiquement qu'un gigantesque tableau de coefficients mathématiques appliqués aux entrées : les <strong>poids</strong>. Les modèles classiques stockent ces milliards de poids en **virgule flottante** (norme IEEE 754), souvent en haute précision comme le type **FP32** (32 bits par poids) ou le standard actuel **FP16** (16 bits). Un modèle de 7 milliards de paramètres en FP16 sature immédiatement 14 Go de RAM, et l'effondrement du taux de génération sur CPU rend l'usage impossible sans GPU dédié. L'enjeu pour le développeur SLAM est donc de maîtriser l'empreinte matérielle de son code via des **SLM (Small Language Models)** et la **quantification**.</p>
+        <p class="desc" style="margin-bottom:12px;">L'exécution locale d'une IA garantit la confidentialité des données et supprime la dépendance au Cloud. Le défi technique majeur réside dans la mémoire : les modèles classiques utilisent des milliards de <strong>poids en virgule flottante</strong> (nombres décimaux très précis de type <code style="color:${d.hex}">float16</code>), saturant la RAM et nécessitant d'énormes GPU. L'enjeu pour les développeurs est d'utiliser des <strong>SLM (Small Language Models)</strong> aux architectures optimisées.</p>
 
         <div style="border:1px solid ${d.hex}25;background:${d.hex}05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
           <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,${d.hex},${d.hex}22)"></div>
@@ -706,7 +706,7 @@ const PL = [
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">ALGORITHMIE</span>
             <span class="tag" style="border-color:${d.hex}40;color:${d.hex};background:${d.hex}0a">1-BIT LLM</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">L'architecture BitNet illustre une optimisation algorithmique radicale par quantification extrême. Elle abandonne totalement la virgule flottante au profit d'une logique ternaire où chaque poids ne peut prendre que trois valeurs entières : $\{-1, 0, 1\}$. Pour le développeur, l'impact est massif : les multiplications matricielles lourdes (MatMul) disparaissent au profit de simples additions et soustractions d'entiers, permettant des gains de vitesse spectaculaires sur CPU standard.</p>
+          <p style="font-size:10.5px;color:rgba(200,235,252,.78);line-height:1.9;margin-bottom:8px">L'architecture BitNet illustre une optimisation algorithmique radicale. Elle abandonne totalement la virgule flottante via une <strong style="color:${d.hex}">quantification ternaire (-1, 0, 1)</strong>. Informatiquement, les coûteuses multiplications matricielles de décimaux sont remplacées par de simples additions d'entiers (<code style="color:${d.hex}">int</code>). Cette maîtrise des types de données réduit l'empreinte mémoire de 90%, rendant le modèle exécutable sur un CPU standard.</p>
         </div>
 
         <div style="border:1px solid #a78bfa25;background:#a78bfa05;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
@@ -717,11 +717,11 @@ const PL = [
             <span class="tag" style="border-color:#a78bfa40;color:#a78bfa;background:#a78bfa0a">EDGE COMPUTING</span>
             <span class="tag" style="border-color:#a78bfa40;color:#a78bfa;background:#a78bfa0a">NPU</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(200,185,252,.78);line-height:1.9;margin-bottom:8px">Phi-4 concrétise cette approche en optimisant l'architecture pour déléguer les calculs directement aux unités spécialisées (NPU) des processeurs récents, validant la faisabilité de l'inférence complexe 100% hors-ligne.</p>
+          <p style="font-size:10.5px;color:rgba(200,185,252,.78);line-height:1.9;margin-bottom:8px">En parallèle de la recherche sur le ternaire, l'optimisation s'applique via la réduction d'échelle. Phi-4 est un modèle compact structuré pour déléguer sa charge de calcul directement aux <strong style="color:#d4bbff">puces NPU (Neural Processing Unit)</strong> des postes clients, garantissant un fonctionnement 100% hors-ligne.</p>
         </div>
 
-        <div class="sec">IMPACT MÉTIEUR & LIEN BTS SIO SLAM</div>
-        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Comprendre la virgule flottante et la quantification est crucial pour le développeur SLAM moderne. Cela permet de passer d'une architecture **Cloud** (coûteuse, latente, soumise au RGPD) à une architecture **Edge** embarquée. <br><strong style="color:${d.hex}">Compétence validée (E5) :</strong> Maîtrise de l'impact matériel du code. En forçant le passage de types $float16$ à des types entiers via quantification (ex: format GGUF), j'optimise l'usage de la RAM de l'utilisateur final. <br><strong style="color:${d.hex}">POC réalisé :</strong> Inférence locale hors-ligne validée via Ollama, confirmant l'absence de requêtes réseau lors du traitement.</p>
+        <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
+        <p class="desc" style="border-left:2px solid ${d.hex}80; padding-left:10px; background:rgba(0,229,255,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le métier de développeur évolue : plutôt que de programmer des requêtes vers une API Cloud externe, nous devons désormais <strong style="color:${d.hex}">embarquer le moteur d'IA</strong> au cœur de l'application locale. <br><strong style="color:${d.hex}">POC validé :</strong> Exécution locale hors-ligne d'un modèle SLM (quantifié au format GGUF) via le framework Ollama, confirmant l'absence totale de requêtes réseau lors de l'inférence.</p>
       </div>
 
       <div style="padding-top:15px; border-top:1px dashed #f472b640;">
@@ -736,7 +736,7 @@ const PL = [
             <span class="tag" style="border-color:#f472b640;color:#f472b6;background:#f472b60a">CYBERSÉCURITÉ</span>
             <span class="tag" style="border-color:#f472b640;color:#f472b6;background:#f472b60a">STANDARDS NIST</span>
           </div>
-          <p style="font-size:10.5px;color:rgba(252,200,225,.78);line-height:1.9;margin-bottom:8px">Validation des premiers standards de chiffrement par réseaux par le <strong>NIST (National Institute of Standards and Technology)</strong>. En France, l'**ANSSI** impose une doctrine stricte : l'<strong style="color:#f472b6">hybridation</strong>. Le code source doit combiner un algorithme classique avec un algorithme PQC.</p>
+          <p style="font-size:10.5px;color:rgba(252,200,225,.78);line-height:1.9;margin-bottom:8px">Validation des premiers standards de chiffrement par réseaux par le <strong>NIST (National Institute of Standards and Technology)</strong>. En France, l'<strong>ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)</strong> impose une doctrine stricte : l'<strong style="color:#f472b6">hybridation</strong>. Le code source doit combiner un algorithme classique avec un algorithme PQC.</p>
         </div>
 
         <div style="border:1px solid #fbbf2425;background:#fbbf2405;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
@@ -751,7 +751,40 @@ const PL = [
         </div>
 
         <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
-        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration. <br><strong style="color:#f472b6">POC validé :</strong> Déploiement de l'utilitaire d'analyse Trivy on un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
+        <p class="desc" style="border-left:2px solid #f472b680; padding-left:10px; background:rgba(244,114,182,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">Le développement de logiciels impose l'<strong style="color:#f472b6">agilité cryptographique</strong>. Les primitives de chiffrement doivent être conçues comme des modules substituables via configuration. <br><strong style="color:#f472b6">POC validé :</strong> Déploiement de l'utilitaire d'analyse Trivy sur un environnement de conteneurisation pour détecter les dépendances logicielles cryptographiques obsolètes.</p>
+      </div>
+
+      <div style="padding-top:15px; border-top:1px dashed #4ade8040;">
+        <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#4ade80;letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;">► Thème 3 : Green IT & Éco-conception logicielle</div>
+        <p class="desc" style="margin-bottom:12px;">Le développement d'IA et de systèmes complexes consomme énormément d'énergie. Le numérique représente environ <strong style="color:#4ade80">4 % des émissions mondiales de gaz à effet de serre</strong>. L'éco-conception devient une norme — et une obligation légale — pour réduire l'empreinte carbone du SI. Pour un développeur SLAM, l'enjeu n'est plus seulement de faire fonctionner le code, mais de le rendre <strong>durable et sobre</strong>.</p>
+
+        <div style="border:1px solid #4ade8025;background:#4ade8005;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
+          <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#4ade80,#4ade8022)"></div>
+          <div style="font-size:6.5px;letter-spacing:4px;color:#4ade80;opacity:.7;margin-bottom:4px;text-transform:uppercase">2022 · Cadre réglementaire français · DINUM</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">RGESN — Référentiel Général d'Écoconception de Services Numériques</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+            <span class="tag" style="border-color:#4ade8040;color:#4ade80;background:#4ade800a">NORME</span>
+            <span class="tag" style="border-color:#4ade8040;color:#4ade80;background:#4ade800a">OBLIGATION LÉGALE</span>
+          </div>
+          <p style="font-size:10.5px;color:rgba(200,252,215,.78);line-height:1.9;margin-bottom:8px">Le <strong>RGESN</strong> impose aux services numériques publics (et inspire le secteur privé) de respecter des critères d'écoconception : réduction des requêtes réseau, compression des assets, limitation du JavaScript côté client, choix d'hébergement sobre. C'est le cadre de référence pour structurer une démarche Green IT en développement logiciel.</p>
+        </div>
+
+        <div style="border:1px solid #34d39925;background:#34d39905;padding:14px 16px;position:relative;overflow:hidden;margin-bottom:12px">
+          <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,#34d399,#34d39922)"></div>
+          <div style="font-size:6.5px;letter-spacing:4px;color:#34d399;opacity:.7;margin-bottom:4px;text-transform:uppercase">2023–2025 · Mesure & profilage énergétique · Open Source</div>
+          <div style="font-family:var(--fd);font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:6px">Scaphandre & CodeCarbon : mesurer pour optimiser</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+            <span class="tag" style="border-color:#34d39940;color:#34d399;background:#34d3990a">MÉTRIQUE</span>
+            <span class="tag" style="border-color:#34d39940;color:#34d399;background:#34d3990a">PROFILAGE</span>
+          </div>
+          <p style="font-size:10.5px;color:rgba(195,250,225,.78);line-height:1.9;margin-bottom:8px"><strong style="color:#6ee7b7">Scaphandre</strong> profile la consommation énergétique des processus et threads en temps réel au niveau OS. <strong style="color:#6ee7b7">CodeCarbon</strong> estime les émissions CO₂ d'un script Python pendant son exécution. Ces outils transforment l'optimisation énergétique en donnée mesurable — condition indispensable à toute démarche d'éco-conception sérieuse.</p>
+        </div>
+
+        <div class="sec">LIEN AVEC LES AUTRES THÈMES</div>
+        <p class="desc" style="margin-bottom:12px;">Les trois veilles forment une vision cohérente : l'<strong style="color:${d.hex}">IA locale</strong> réduit la dépendance aux datacenters énergivores ; la <strong style="color:#f472b6">PQC</strong> optimise le chiffrement pour limiter la surcharge CPU ; la <strong style="color:#4ade80">Green IT</strong> impose de mesurer et réduire l'empreinte à chaque ligne de code. La <strong style="color:#4ade80">dette technique</strong> — code mal optimisé nécessitant plus de puissance pour une tâche simple — est aussi un facteur d'énergivoresité : la refactoriser, c'est rendre le logiciel plus sobre.</p>
+
+        <div class="sec">POC ET IMPACT DÉVELOPPEMENT (SLAM)</div>
+        <p class="desc" style="border-left:2px solid #4ade8080; padding-left:10px; background:rgba(74,222,128,.03); padding-top:6px; padding-bottom:6px; margin-bottom:20px;">L'éco-conception s'applique dès la conception : choix de frameworks légers, requêtes SQL optimisées, mise en cache, réduction des allers-retours réseau. <br><strong style="color:#4ade80">POC validé :</strong> Profilage de la consommation d'un processus applicatif avec Scaphandre, identification des threads les plus énergivores et proposition de corrections ciblées (réduction des boucles inutiles, lazy loading des ressources).</p>
       </div>
 
       <div style="padding-top:10px; border-top:1px solid rgba(0,207,255,.15);">
@@ -760,14 +793,17 @@ const PL = [
           • <a href="https://cyber.gouv.fr/enjeux-technologiques/cryptographie-post-quantique/" target="_blank" style="color:${d.hex};text-decoration:none;">Dossier ANSSI : Transition vers la cryptographie post-quantique</a><br>
           • <a href="https://www.nist.gov/pqcrypto" target="_blank" style="color:${d.hex};text-decoration:none;">NIST : Post-Quantum Cryptography Standardization</a><br>
           • <a href="https://github.com/microsoft/BitNet" target="_blank" style="color:${d.hex};text-decoration:none;">Microsoft Research : Dépôt Github BitNet (1-bit LLM)</a><br>
-          • <a href="https://huggingface.co/microsoft/phi-4" target="_blank" style="color:${d.hex};text-decoration:none;">Hugging Face : Modèle Microsoft Phi-4</a>
+          • <a href="https://huggingface.co/microsoft/phi-4" target="_blank" style="color:${d.hex};text-decoration:none;">Hugging Face : Modèle Microsoft Phi-4</a><br>
+          • <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank" style="color:#4ade80;text-decoration:none;">DINUM : Référentiel Général d'Écoconception de Services Numériques (RGESN)</a><br>
+          • <a href="https://github.com/hubblo-org/scaphandre" target="_blank" style="color:#4ade80;text-decoration:none;">Scaphandre : profilage énergétique des processus</a><br>
+          • <a href="https://codecarbon.io/" target="_blank" style="color:#4ade80;text-decoration:none;">CodeCarbon : estimation CO₂ des scripts Python</a>
         </div>
       </div>
 
       <div class="mets" style="margin-top:15px;">
-        <div class="met"><span class="mv">2</span><span class="ml">THÈMES VEILLÉS</span></div>
+        <div class="met"><span class="mv">3</span><span class="ml">THÈMES VEILLÉS</span></div>
         <div class="met"><span class="mv">100%</span><span class="ml">FOCUS SLAM</span></div>
-        <div class="met"><span class="mv">2 POC</span><span class="ml">VALIDÉS</span></div>
+        <div class="met"><span class="mv">3 POC</span><span class="ml">VALIDÉS</span></div>
       </div>
     `
   }
@@ -1254,7 +1290,7 @@ function anim(){
 
   // shooting stars
   const dt=.016;
-  shooters.forEach=s=>{
+  shooters.forEach(s=>{
     if(!s.active)return;
     s.life+=dt;
     if(s.life>s.maxLife){
@@ -1270,7 +1306,7 @@ function anim(){
     s.pos[0]=ex-s.dx*tlen; s.pos[1]=ey-s.dy*tlen; s.pos[2]=ez-s.dz*tlen;
     s.pos[3]=ex; s.pos[4]=ey; s.pos[5]=ez;
     s.geo.attributes.position.needsUpdate=true;
-  };
+  });
 
   // hover
   ray.setFromCamera(mouse,cam);
