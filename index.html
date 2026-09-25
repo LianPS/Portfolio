@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio de Lian Piter Silvente, étudiant en BTS SIO SLAM. Domaines : développement, data, intelligence artificielle.">
+<title>Lian Piter Silvente — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./src/solar-portfolio/styles.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="lnm">LIAN PITER SILVENTE</div>
+  <div class="lsub">INITIALISATION DU SYSTÈME SOLAIRE...</div>
+  <div class="lbar"><div class="lfil"></div></div>
+  <div class="lpct" id="lpct">0%</div>
+  <div class="lsystem" id="lsystem"></div>
+</div>
+
+<canvas id="c" aria-hidden="true"></canvas>
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<!-- CROSSHAIR -->
+<svg id="xhair" width="40" height="40" viewBox="0 0 40 40"><line x1="20" y1="0" x2="20" y2="14" stroke="#00d4ff" stroke-width="1"/><line x1="20" y1="26" x2="20" y2="40" stroke="#00d4ff" stroke-width="1"/><line x1="0" y1="20" x2="14" y2="20" stroke="#00d4ff" stroke-width="1"/><line x1="26" y1="20" x2="40" y2="20" stroke="#00d4ff" stroke-width="1"/><circle cx="20" cy="20" r="2.5" stroke="#00d4ff" stroke-width="1" fill="none"/></svg>
+
+<!-- HUD -->
+<div id="hud">
+  <!-- brackets -->
+  <div class="br-corner tl">
+    <svg width="56" height="56" fill="none"><path d="M2 22V2H22" stroke="#00d4ff" stroke-width="1.5" opacity=".55"/><circle cx="2" cy="2" r="1.5" fill="#00d4ff" opacity=".5"/><circle cx="22" cy="2" r="1" fill="#00d4ff" opacity=".22"/></svg>
+  </div>
+  <div class="br-corner tr" style="transform:scaleX(-1)">
+    <svg width="56" height="56" fill="none"><path d="M2 22V2H22" stroke="#00d4ff" stroke-width="1.5" opacity=".55"/><circle cx="2" cy="2" r="1.5" fill="#00d4ff" opacity=".5"/><circle cx="22" cy="2" r="1" fill="#00d4ff" opacity=".22"/></svg>
+  </div>
+  <div class="br-corner bl" style="transform:scaleY(-1)">
+    <svg width="56" height="56" fill="none"><path d="M2 22V2H22" stroke="#00d4ff" stroke-width="1.5" opacity=".55"/><circle cx="2" cy="2" r="1.5" fill="#00d4ff" opacity=".5"/></svg>
+  </div>
+  <div class="br-corner br2" style="transform:scale(-1)">
+    <svg width="56" height="56" fill="none"><path d="M2 22V2H22" stroke="#00d4ff" stroke-width="1.5" opacity=".55"/><circle cx="2" cy="2" r="1.5" fill="#00d4ff" opacity=".5"/></svg>
+  </div>
+
+  <div class="telem tl">
+    <span id="status-dot" aria-hidden="true"></span>STATUT: NOMINAL<br>
+    ORBITES: SYNCHRONISÉES<br>
+    FORMATION: BTS SIO SLAM
+  </div>
+  <div class="telem tr" id="tr">
+    CURSEUR: ——<br>
+    SCAN: ACTIF<br>
+    RENDERER: WEBGL2
+  </div>
+  <div class="telem bl" aria-label="Profil et intérêts">
+    LIAN PITER SILVENTE · 20 ANS<br>
+    LE TOUVET 38 · AUVERGNE RA<br>
+    INTÉRÊTS: DÉVELOPPEMENT · DATA · IA
+  </div>
+  <div class="telem br2">
+    CLIC: EXPLORER PLANÈTE<br>
+    NAV: BOUTONS BAS<br>
+    ESC: RETOUR SYSTÈME
+  </div>
+
+  <div id="banner">
+    <h1>LIAN PITER SILVENTE</h1>
+    <p>BTS SIO SLAM · DÉVELOPPEMENT · DATA &amp; IA · AUVERGNE–RHÔNE–ALPES</p>
+  </div>
+
+  <div id="nav-wrap" role="navigation" aria-label="Navigation du portfolio">
+    <div id="nav-label">NAVIGUER VERS UN MONDE</div>
+    <div id="nav-planets"></div>
+  </div>
+</div>
+
+<!-- INFO PANEL -->
+<div id="info-panel" role="region" aria-labelledby="pnm" aria-live="polite" aria-hidden="true">
+  <div class="pscan"></div>
+  <div class="pin">
+    <div class="ph">
+      <div class="porb" id="porb"></div>
+      <div class="phtext">
+        <div class="plb"><span class="plb-dot"></span>TRANSMISSION REÇUE</div>
+        <div class="pnm" id="pnm">—</div>
+        <div class="psb2" id="psb2">—</div>
+      </div>
+      <button class="pcls" id="pcls" type="button" title="Fermer (Échap)" aria-label="Fermer le panneau">✕</button>
+    </div>
+    <div class="pb" id="pb"></div>
+  </div>
+</div>
+
+<div id="tooltip" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script type="module" src="./src/solar-portfolio/app.js"></script>
+</body>
+</html>
