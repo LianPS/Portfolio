@@ -199,7 +199,8 @@ function mkTex(hex, id, body=PLANET_BODY_BY_ID[id]){
       [s*.25,s*.75].forEach(x=>ctx.drawImage(logo,x-w/2,y,w,logoH));
       tex.needsUpdate=true;
     };
-    logo.src=new URL('../../logo-ermaconcept.png',import.meta.url).href;
+    logo.onerror=()=>{ if(!logo.dataset.fb){ logo.dataset.fb='1'; logo.src='/logo-ermaconcept.png'; } };
+    logo.src=new URL('./logo-ermaconcept.png',import.meta.url).href;
     return tex;
   }
 
